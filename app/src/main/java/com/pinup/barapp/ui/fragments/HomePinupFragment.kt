@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentPinupHomeBinding
 
 class HomePinupFragment : Fragment() {
@@ -23,5 +24,7 @@ class HomePinupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         //todo home fragment logic
+        binding.bottomNavigation.selectedItemId = R.id.navigation_cart
+
     }
 }

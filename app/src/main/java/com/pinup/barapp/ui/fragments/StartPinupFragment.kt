@@ -84,7 +84,7 @@ class StartPinupFragment : Fragment() {
 
     private fun navigateBasedOnOfferLink(offerLink: String) {
         if (offerLink.isNotEmpty()) {
-            parentFragmentManager.launchNewFragmentWithoutBackstack(PrivacyPinupFragment(offerLink))
+            parentFragmentManager.launchNewFragmentWithoutBackstack(WelcomePinupFragment())
         } else {
             navigateToProjectFragment()
         }

@@ -6,7 +6,44 @@
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <item name="chipGroupStyle">@style/Widget.Material3.ChipGroup</item>
+
     </style>
 
+
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+    <!-- ваш кастомный чип -->
+
+    <style name="ShapeAppearance.MenuChip.Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- стиль для **выбранного** чипа -->
+    <style name="Widget.App.MenuChipSelected" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_selected_bg</item>
+        <item name="android:textColor">@color/chip_selected_text</item>
+        <item name="chipIconTint">@color/chip_icon_tint</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:insetLeft">12dp</item>
+        <item name="android:insetRight">12dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="checkedIconEnabled">false</item>
+    </style>
+
+    <!-- стиль для **невыбранных** чипов -->
+    <style name="Widget.App.MenuChipDefault" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="android:textColor">@color/chip_unselected_text</item>
+        <item name="chipStrokeColor">@color/chip_unselected_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:insetLeft">12dp</item>
+        <item name="android:insetRight">12dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="checkedIconEnabled">false</item>
+    </style>
+
+
 </resources>

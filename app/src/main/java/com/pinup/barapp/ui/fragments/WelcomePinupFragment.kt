@@ -31,5 +31,6 @@ class WelcomePinupFragment : Fragment() {
             context?.getSharedPreferences()?.edit { putBoolean(WELCOME_KEY, true).apply() }
             parentFragmentManager.launchNewFragmentWithoutBackstack(HomePinupFragment())
         }
+
     }
 }
