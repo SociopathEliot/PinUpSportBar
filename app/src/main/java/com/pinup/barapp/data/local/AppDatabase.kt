@@ -6,7 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.pinup.barapp.domain.models.CartItem
 
-@Database(entities = [CartItem::class], version = 2)
+@Database(
+    entities = [CartItem::class],
+    version = 2,
+    exportSchema = false
+)
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
 
@@ -19,7 +24,10 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "cart_db"
-                ).build().also { instance = it }
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also { instance = it }
             }
     }
 }

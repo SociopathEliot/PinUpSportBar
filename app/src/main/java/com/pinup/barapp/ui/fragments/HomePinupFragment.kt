@@ -31,7 +31,8 @@ class HomePinupFragment : Fragment() {
             .findFragmentById(R.id.fragment_container_view) as NavHostFragment
         val navController = navHost.navController
         binding.bottomNavigation.setupWithNavController(navController)
-        binding.bottomNavigation.selectedItemId = R.id.navigation_cart
+        binding.bottomNavigation.selectedItemId = R.id.menuFragment
+
 
     }
 }
