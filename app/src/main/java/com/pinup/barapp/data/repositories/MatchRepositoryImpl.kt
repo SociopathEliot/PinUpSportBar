@@ -22,6 +22,7 @@ class MatchRepositoryImpl @Inject constructor(
                 formatter.format(to),
                 RetrofitClient.API_KEY
             )
+            response.data.map { it.toDomain() }
             if (response.isSuccessful) {
                 response.body()?.data?.map { it.toDomain() } ?: emptyList()
             } else {
