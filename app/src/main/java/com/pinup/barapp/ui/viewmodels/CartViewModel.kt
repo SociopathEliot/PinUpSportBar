@@ -22,8 +22,11 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val dao = AppDatabase.getDatabase(application).cartDao()
         repository = CartRepository(dao)
-        totalQuantity = repository.getTotalQuantity().asLiveData()
-        totalPrice = repository.getTotalPrice().asLiveData()
+        totalQuantity = repository.getTotalQuantity()
+            .asLiveData()
+        totalPrice = repository.getTotalPrice()
+            .asLiveData()
+       
         cartItems = repository.getCartItems().asLiveData()
     }
 

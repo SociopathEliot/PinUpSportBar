@@ -3,6 +3,7 @@ package com.pinup.barapp.data.repositories
 import com.pinup.barapp.data.remote.local.CartDao
 import com.pinup.barapp.domain.models.CartItem
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class CartRepository(private val dao: CartDao) {
 
@@ -13,9 +14,11 @@ class CartRepository(private val dao: CartDao) {
 
     fun getCartItems(): Flow<List<CartItem>> = dao.getAll()
 
-    fun getTotalQuantity(): Flow<Int> = dao.getTotalQuantity()
+    fun getTotalQuantity(): Flow<Int> =
+        dao.getTotalQuantity().map { it ?: 0 }
 
-    fun getTotalPrice(): Flow<Double> = dao.getTotalPrice()
+    fun getTotalPrice(): Flow<Double> =
+        dao.getTotalPrice().map { it ?: 0.0 }
 
     suspend fun insert(item: CartItem) {
         val existing = dao.getItemById(item.id)
@@ -40,7 +43,5 @@ class CartRepository(private val dao: CartDao) {
     suspend fun decreaseQuantity(item: CartItem) {
         dao.decreaseQuantity(item.id)
     }
-
-
 
 }
