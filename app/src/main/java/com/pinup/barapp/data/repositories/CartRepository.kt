@@ -14,13 +14,20 @@ class CartRepository(private val dao: CartDao) {
 
     fun getCartItems(): Flow<List<CartItem>> = dao.getAll()
 
-    fun getTotalQuantity(): Flow<Int?> =
+    fun getTotalQuantity(): Flow<Int> =
         dao.getTotalQuantity().map { it ?: 0 }
 
-    fun getTotalPrice(): Flow<Double?> =
+    fun getTotalPrice(): Flow<Double> =
         dao.getTotalPrice().map { it ?: 0.0 }
 
-    suspend fun insert(item: CartItem) = dao.insert(item)
+    suspend fun insert(item: CartItem) {
+        val existing = dao.getItemById(item.id)
+        if (existing != null) {
+            dao.increaseQuantity(item.id)
+        } else {
+            dao.insert(item)
+        }
+    }
 
     suspend fun update(item: CartItem) = dao.update(item)
 
@@ -36,8 +43,5 @@ class CartRepository(private val dao: CartDao) {
     suspend fun decreaseQuantity(item: CartItem) {
         dao.decreaseQuantity(item.id)
     }
-
-    fun getAll() = dao.getAll()
-
 
 }
