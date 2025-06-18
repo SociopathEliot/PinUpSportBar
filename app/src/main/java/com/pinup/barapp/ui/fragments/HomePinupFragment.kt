@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentPinupHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,8 +27,11 @@ class HomePinupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        //todo home fragment logic
-        binding.bottomNavigation.selectedItemId = R.id.navigation_cart
+        val navHost = childFragmentManager
+            .findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        val navController = navHost.navController
+        binding.bottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.selectedItemId = R.id.menuFragment
 
     }
 }
