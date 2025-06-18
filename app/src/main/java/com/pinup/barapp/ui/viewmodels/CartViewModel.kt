@@ -26,6 +26,7 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
             .asLiveData()
         totalPrice = repository.getTotalPrice()
             .asLiveData()
+       
         cartItems = repository.getCartItems().asLiveData()
     }
 

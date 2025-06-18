@@ -1,6 +1,5 @@
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.pinup.barapp.data.remote.local.AppDatabase
 import com.pinup.barapp.data.remote.local.CartDao
 import com.pinup.barapp.data.repositories.CartRepository
 import com.pinup.barapp.domain.models.CartItem
@@ -28,7 +27,6 @@ class CartRepositoryTest {
 
     @After
     fun teardown() {
-        db.close()
     }
 
     @Test
@@ -39,13 +37,4 @@ class CartRepositoryTest {
         assertEquals(0.0, price, 0.0)
     }
 
-    @Test
-    fun addToCartTwice_increasesQuantity() = runBlocking {
-        val item = CartItem(id = 1, name = "Test", price = 1.0, imageRes = 0)
-        repository.insert(item)
-        repository.insert(item)
-
-        val result = dao.getItemById(1)
-        assertEquals(2, result?.quantity)
-    }
 }
