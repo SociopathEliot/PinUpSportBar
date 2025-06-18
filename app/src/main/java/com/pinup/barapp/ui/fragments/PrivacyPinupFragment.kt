@@ -43,6 +43,9 @@ import com.pinup.barapp.databinding.NoInternetConnectionLayoutBinding
 import com.pinup.barapp.utils.WelcomePinupFragment.WELCOME_KEY
 import com.pinup.barapp.utils.WelcomePinupFragment.getSharedPreferences
 import com.pinup.barapp.utils.WelcomePinupFragment.launchNewFragment
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class PrivacyPinupFragment(private val urlOffer: String) : Fragment() {
 

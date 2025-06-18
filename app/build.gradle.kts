@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -42,4 +45,11 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.navigation.fragment.ktx.v277)
     implementation(libs.androidx.navigation.ui.ktx)
+
+
+    val room_version = "2.7.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("com.google.dagger:hilt-android:2.55")
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
 }

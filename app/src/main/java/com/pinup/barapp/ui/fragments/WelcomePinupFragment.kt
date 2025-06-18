@@ -11,7 +11,9 @@ import com.pinup.barapp.databinding.FragmentWelcomePinupBinding
 import com.pinup.barapp.utils.WelcomePinupFragment.WELCOME_KEY
 import com.pinup.barapp.utils.WelcomePinupFragment.getSharedPreferences
 import com.pinup.barapp.utils.WelcomePinupFragment.launchNewFragmentWithoutBackstack
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomePinupFragment : Fragment() {
 
     private lateinit var binding: FragmentWelcomePinupBinding

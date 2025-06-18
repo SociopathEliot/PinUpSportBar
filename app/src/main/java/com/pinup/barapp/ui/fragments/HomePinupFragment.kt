@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentPinupHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomePinupFragment : Fragment() {
 
     private lateinit var binding: FragmentPinupHomeBinding

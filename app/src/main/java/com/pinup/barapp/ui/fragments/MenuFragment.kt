@@ -5,17 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentMenuBinding
 import com.pinup.barapp.domain.models.MenuItem
+import com.pinup.barapp.domain.models.CartItem
 import com.pinup.barapp.ui.adapters.MenuAdapter
+import com.pinup.barapp.ui.viewmodels.CartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 
-    private lateinit var binding: FragmentMenuBinding
+    private var _binding: FragmentMenuBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: MenuAdapter
+    private val cartViewModel: CartViewModel by viewModels()
 
     private val tags = listOf("Drinks", "Starters", "Mains", "Desserts")
     private var selected = tags.first()
@@ -49,26 +57,32 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     )
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         adapter = MenuAdapter { item ->
-            // item click shit
+            val cartItem = CartItem(
+                id = item.id,
+                name = item.name,
+                price = item.price,
+                imageRes = item.imageRes,
+                quantity = 1
+            )
+            cartViewModel.addToCart(cartItem)
         }
+
         binding.rvMenu.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMenu.adapter = adapter
 
         setupChips()
         filterAndSubmit()
+        observeCartCount()
     }
 
     private fun setupChips() {
@@ -100,5 +114,17 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             else -> emptyList()
         }
         adapter.submitList(list)
+    }
+
+    private fun observeCartCount() {
+        cartViewModel.totalQuantity.observe(viewLifecycleOwner) { count ->
+            binding.tvCartBadge.text = count.toString()
+            binding.tvCartBadge.visibility = if (count > 0) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

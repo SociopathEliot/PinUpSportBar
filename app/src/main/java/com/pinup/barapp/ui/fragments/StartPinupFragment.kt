@@ -18,6 +18,9 @@ import com.pinup.barapp.utils.WelcomePinupFragment.USER_STATUS_KEY
 import com.pinup.barapp.utils.WelcomePinupFragment.WELCOME_KEY
 import com.pinup.barapp.utils.WelcomePinupFragment.getSharedPreferences
 import com.pinup.barapp.utils.WelcomePinupFragment.launchNewFragmentWithoutBackstack
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class StartPinupFragment : Fragment() {
 
