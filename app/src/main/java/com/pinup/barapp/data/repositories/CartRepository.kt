@@ -34,7 +34,6 @@ class CartRepository(private val dao: CartDao) {
         dao.decreaseQuantity(item.id)
     }
 
-    fun getAll() = dao.getAll()
 
 
 }

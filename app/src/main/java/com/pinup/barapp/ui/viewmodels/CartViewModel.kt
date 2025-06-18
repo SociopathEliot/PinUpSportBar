@@ -24,7 +24,7 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
         repository = CartRepository(dao)
         totalQuantity = repository.getTotalQuantity().asLiveData()
         totalPrice = repository.getTotalPrice().asLiveData()
-        cartItems = repository.getAll().asLiveData()
+        cartItems = repository.getCartItems().asLiveData()
     }
 
     fun addToCart(item: CartItem) {
