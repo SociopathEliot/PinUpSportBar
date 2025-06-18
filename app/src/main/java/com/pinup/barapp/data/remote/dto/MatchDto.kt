@@ -11,26 +11,35 @@ data class MatchDto(
     @SerializedName("id") val id: Int,
     @SerializedName("starting_at") val startingAt: String?,
     @SerializedName("status") val status: String?,
+    @SerializedName("participants") val participants: List<ParticipantDto>?,
     @SerializedName("league") val league: LeagueDto?,
-    @SerializedName("home_team") val homeTeam: TeamDto?,
-    @SerializedName("away_team") val awayTeam: TeamDto?
 ) {
-    fun toDomain(): Match = Match(
-        id = id,
-        homeName = homeTeam?.name.orEmpty(),
-        awayName = awayTeam?.name.orEmpty(),
-        homeLogo = homeTeam?.logo,
-        awayLogo = awayTeam?.logo,
-        time = startingAt.orEmpty(),
-        status = status.orEmpty(),
-        league = league?.name.orEmpty()
-    )
+    fun toDomain(): Match {
+        val home = participants?.firstOrNull { it.meta?.location == "home" }
+        val away = participants?.firstOrNull { it.meta?.location == "away" }
+        return Match(
+            id = id,
+            homeName = home?.name.orEmpty(),
+            awayName = away?.name.orEmpty(),
+            homeLogo = home?.imagePath,
+            awayLogo = away?.imagePath,
+            time = startingAt.orEmpty(),
+            status = status.orEmpty(),
+            league = league?.name.orEmpty()
+        )
+    }
 }
 
-data class TeamDto(
+data class ParticipantDto(
     @SerializedName("name") val name: String?,
-    @SerializedName("image_path") val logo: String?
+    @SerializedName("image_path") val imagePath: String?,
+    @SerializedName("meta") val meta: MetaDto?
 )
+
+data class MetaDto(
+    @SerializedName("location") val location: String?
+)
+
 
 data class LeagueDto(
     @SerializedName("name") val name: String?
