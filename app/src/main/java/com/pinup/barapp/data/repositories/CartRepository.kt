@@ -17,7 +17,14 @@ class CartRepository(private val dao: CartDao) {
 
     fun getTotalPrice(): Flow<Double> = dao.getTotalPrice()
 
-    suspend fun insert(item: CartItem) = dao.insert(item)
+    suspend fun insert(item: CartItem) {
+        val existing = dao.getItemById(item.id)
+        if (existing != null) {
+            dao.increaseQuantity(item.id)
+        } else {
+            dao.insert(item)
+        }
+    }
 
     suspend fun update(item: CartItem) = dao.update(item)
 
