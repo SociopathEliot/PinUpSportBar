@@ -17,7 +17,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/navigation_calendar"
+        android:id="@+id/scheduleFragment"
         android:icon="@drawable/calendar_ic"
         android:title="" />
 

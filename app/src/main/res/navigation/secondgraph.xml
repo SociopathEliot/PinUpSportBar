@@ -15,4 +15,14 @@
         android:id="@+id/basketFragment"
         android:name="com.pinup.barapp.ui.fragments.BasketFragment"
         android:label="BasketFragment" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.pinup.barapp.ui.fragments.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.pinup.barapp.ui.fragments.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>
