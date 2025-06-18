@@ -11,4 +11,8 @@
         android:name="com.pinup.barapp.ui.fragments.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.pinup.barapp.ui.fragments.BasketFragment"
+        android:label="BasketFragment" />
 </navigation>

@@ -1,8 +1,8 @@
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.pinup.barapp.data.remote.local.CartDao
+import com.pinup.barapp.data.local.AppDatabase
+import com.pinup.barapp.data.local.CartDao
 import com.pinup.barapp.data.repositories.CartRepository
-import com.pinup.barapp.domain.models.CartItem
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After

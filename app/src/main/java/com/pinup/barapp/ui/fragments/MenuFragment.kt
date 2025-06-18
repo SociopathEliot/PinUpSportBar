@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.pinup.barapp.R
@@ -77,8 +78,14 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             cartViewModel.addToCart(cartItem)
         }
 
+
+
         binding.rvMenu.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMenu.adapter = adapter
+
+        binding.ivCart.setOnClickListener {
+            findNavController().navigate(R.id.basketFragment)
+        }
 
         setupChips()
         filterAndSubmit()
@@ -121,6 +128,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             binding.tvCartBadge.text = count.toString()
             binding.tvCartBadge.visibility = if (count > 0) View.VISIBLE else View.GONE
         }
+
     }
 
     override fun onDestroyView() {

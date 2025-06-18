@@ -1,11 +1,12 @@
 package com.pinup.barapp.data.repositories
 
-import com.pinup.barapp.data.remote.local.CartDao
+import com.pinup.barapp.data.local.CartDao
 import com.pinup.barapp.domain.models.CartItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CartRepository(private val dao: CartDao) {
+class CartRepository @Inject constructor(private val dao: CartDao) {
 
     suspend fun deleteById(id: Int) {
         dao.deleteById(id)

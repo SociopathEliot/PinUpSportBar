@@ -1,4 +1,4 @@
-package com.pinup.barapp.data.remote.local
+package com.pinup.barapp.data.local
 
 import androidx.room.*
 import com.pinup.barapp.domain.models.CartItem

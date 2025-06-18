@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -39,24 +39,30 @@ android {
 }
 
 dependencies {
+    // UI и базовые
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.volley)
-    implementation(libs.androidx.navigation.fragment.ktx.v277)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.volley)
 
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt("androidx.room:room-compiler:2.6.1") // ⬅️ обязательно
 
-    val room_version = "2.7.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
-    implementation("com.google.dagger:hilt-android:2.55")
-    implementation("com.google.dagger:hilt-android:2.56.2")
-    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler) // ⬅️ замени ksp на kapt
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.room:room-testing:$room_version")
-    testImplementation("androidx.test:core:1.5.0")
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    kapt(libs.androidx.room.compiler)
+
+    // Тесты
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.room.testing)
+    testImplementation("androidx.test:core:1.6.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 }

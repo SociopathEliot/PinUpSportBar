@@ -1,4 +1,4 @@
-package com.pinup.barapp.data.remote.local
+package com.pinup.barapp.data.local
 
 import android.content.Context
 import androidx.room.Database
