@@ -7,7 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private const val BASE_URL = "https://api.sportmonks.com/v3/football/"
-    const val API_KEY = "ZGXlonmPjnSclUjGqNTbyz1DF6DzNG9fFiuOEfWR8HHtGHtH0le5rSI1z8T7"
+    // Actual token provided for the SportMonks demo account
+    const val API_KEY = "CelKCwG7ZGe3fnrDm3pKLUJoREV8MCaXdvAr63JowGWpqnFqtkC2cARIuSoG"
 
     val apiService: ApiService by lazy {
         val logging = HttpLoggingInterceptor().apply {
