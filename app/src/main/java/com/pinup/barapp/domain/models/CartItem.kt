@@ -2,6 +2,8 @@ package com.pinup.barapp.domain.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Entity(tableName = "cart_items")
 data class CartItem(
