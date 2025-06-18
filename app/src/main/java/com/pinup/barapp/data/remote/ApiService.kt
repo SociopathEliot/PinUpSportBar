@@ -12,7 +12,8 @@ interface ApiService {
     suspend fun getMatchesNext7Days(
         @Path("from") fromDate: String,
         @Path("to") toDate: String,
-        @Query("api_token") apiKey: String
+        @Query("api_token") apiKey: String,
+        @Query("include") include: String = "participants;league"
     ): Response<MatchResponse> // ✅ Обёрнутый
 
 }

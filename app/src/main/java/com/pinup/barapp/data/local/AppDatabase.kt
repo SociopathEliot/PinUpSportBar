@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.pinup.barapp.domain.models.CartItem
 
-@Database(entities = [CartItem::class], version = 1)
+@Database(entities = [CartItem::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
 
