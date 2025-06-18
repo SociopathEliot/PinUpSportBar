@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.flow.map
 import androidx.lifecycle.viewModelScope
 import com.pinup.barapp.data.remote.local.AppDatabase
 import com.pinup.barapp.data.repositories.CartRepository
@@ -22,8 +23,12 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val dao = AppDatabase.getDatabase(application).cartDao()
         repository = CartRepository(dao)
-        totalQuantity = repository.getTotalQuantity().asLiveData()
-        totalPrice = repository.getTotalPrice().asLiveData()
+        totalQuantity = repository.getTotalQuantity()
+            .map { it ?: 0 }
+            .asLiveData()
+        totalPrice = repository.getTotalPrice()
+            .map { it ?: 0.0 }
+            .asLiveData()
         cartItems = repository.getAll().asLiveData()
     }
 
