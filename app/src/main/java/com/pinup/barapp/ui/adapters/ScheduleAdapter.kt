@@ -2,12 +2,12 @@ package com.pinup.barapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.pinup.barapp.R
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.pinup.barapp.databinding.ItemScheduleBinding
-import com.pinup.barapp.domain.models.Match
+
 
 class ScheduleAdapter : ListAdapter<Match, ScheduleAdapter.MatchViewHolder>(DiffCallback()) {
 
@@ -20,7 +20,7 @@ class ScheduleAdapter : ListAdapter<Match, ScheduleAdapter.MatchViewHolder>(Diff
         holder.bind(getItem(position))
     }
 
-    inner class MatchViewHolder(private val binding: ItemScheduleBinding) : RecyclerView.ViewHolder(binding.root) {
+  inner class MatchViewHolder(private val binding: ItemScheduleBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(match: Match) = with(binding) {
             tvHomeName.text = match.homeName
