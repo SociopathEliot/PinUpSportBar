@@ -11,6 +11,7 @@ import com.pinup.barapp.domain.models.CartItem
     version = 2,
     exportSchema = false
 )
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
 

@@ -33,5 +33,6 @@ class HomePinupFragment : Fragment() {
         binding.bottomNavigation.setupWithNavController(navController)
         binding.bottomNavigation.selectedItemId = R.id.menuFragment
 
+
     }
 }
