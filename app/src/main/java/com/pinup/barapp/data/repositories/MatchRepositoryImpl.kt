@@ -23,10 +23,8 @@ class MatchRepositoryImpl @Inject constructor(
                 formatter.format(to),
                 RetrofitClient.API_KEY
             )
-            if (response.isSuccess) {
-                response.result?.data?.map {
-                    it.toDomain()
-                } ?: emptyList()
+            if (response.isSuccessful) { // ✅ работает с retrofit2.Response
+                response.body()?.data?.map { it.toDomain() } ?: emptyList()
             } else {
                 emptyList()
             }
@@ -34,4 +32,5 @@ class MatchRepositoryImpl @Inject constructor(
             emptyList()
         }
     }
+
 }

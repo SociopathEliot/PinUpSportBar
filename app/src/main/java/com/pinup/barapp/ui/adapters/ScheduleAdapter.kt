@@ -2,11 +2,13 @@ package com.pinup.barapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.R
 import com.pinup.barapp.databinding.ItemScheduleBinding
+import com.pinup.barapp.domain.models.Match
 
 
 class ScheduleAdapter : ListAdapter<Match, ScheduleAdapter.MatchViewHolder>(DiffCallback()) {
@@ -23,12 +25,23 @@ class ScheduleAdapter : ListAdapter<Match, ScheduleAdapter.MatchViewHolder>(Diff
   inner class MatchViewHolder(private val binding: ItemScheduleBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(match: Match) = with(binding) {
-            tvHomeName.text = match.homeName
-            tvAwayName.text = match.awayName
+            tvTeamA.text = match.homeName
+            tvTeamB.text = match.awayName
             tvLeague.text = match.league
-            tvTime.text = match.time
+            tvDateTime.text = match.time
             tvStatus.text = match.status
-            // TODO: load team logos into ivHomeLogo and ivAwayLogo
+            Glide
+                .with(imgTeamA)
+                .load(match.homeLogo)
+                .centerCrop()
+                .into(imgTeamA);
+
+            Glide
+                .with(imgTeamB)
+                .load(match.awayLogo)
+                .centerCrop()
+                .into(imgTeamB);
+
         }
     }
 
