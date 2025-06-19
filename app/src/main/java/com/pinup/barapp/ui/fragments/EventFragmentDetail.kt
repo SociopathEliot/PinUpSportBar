@@ -56,7 +56,7 @@ class EventFragmentDetail : Fragment() {
                 detail.features.forEach { text ->
                     val tv = TextView(requireContext()).apply {
                         setText("• $text")
-                        setTextAppearance(R.style.TextAppearance_AppCompat_Body1)
+                        setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Body1)
                     }
                     binding.featureListContainer.addView(tv)
                 }
@@ -74,7 +74,7 @@ class EventFragmentDetail : Fragment() {
                 detail.promoList.forEach { promo ->
                     val tv = TextView(requireContext()).apply {
                         setText("• $promo")
-                        setTextAppearance(R.style.TextAppearance_AppCompat_Body1)
+                        setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Body1)
                     }
                     binding.promoListContainer.addView(tv)
                 }
