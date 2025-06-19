@@ -14,16 +14,17 @@ class MatchRepositoryImpl @Inject constructor(
 ) : MatchRepository {
 
     override suspend fun getUpcomingMatches(): List<Match> {
+        val from = LocalDate.of(2024, 5, 1)
+        val to = LocalDate.of(2024, 5, 7)
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val from = LocalDate.now()
-        val to = from.plusDays(7)
+
         return try {
             val response = api.getMatchesNext7Days(
                 formatter.format(from),
                 formatter.format(to),
                 RetrofitClient.API_KEY
             )
-            if (response.isSuccessful) { // ✅ работает с retrofit2.Response
+            if (response.isSuccessful) {
                 response.body()?.data?.map { it.toDomain() } ?: emptyList()
             } else {
                 emptyList()
@@ -32,5 +33,4 @@ class MatchRepositoryImpl @Inject constructor(
             emptyList()
         }
     }
-
 }

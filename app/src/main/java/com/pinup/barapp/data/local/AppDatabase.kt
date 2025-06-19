@@ -26,8 +26,8 @@ abstract class AppDatabase : RoomDatabase() {
                     "cart_db"
                 )
                     .fallbackToDestructiveMigration()
-                    .build()
-                    .also { instance = it }
+                    .build().also { instance = it }
             }
     }
+
 }

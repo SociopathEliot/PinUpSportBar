@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBasketBinding
 import com.pinup.barapp.ui.adapters.CartAdapter
@@ -47,9 +47,9 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
         }
 
         binding.btnConfirm.setOnClickListener {
-            // TODO: переход к экрану QR
-
-            Toast.makeText(requireContext(), "Order confirmed!", Toast.LENGTH_SHORT).show()
+            val orderId = "2047"
+            val action = BasketFragmentDirections.actionBasketFragmentToQRFragment(orderId)
+            findNavController().navigate(action)
         }
     }
 

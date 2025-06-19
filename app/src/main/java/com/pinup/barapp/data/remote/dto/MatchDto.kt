@@ -15,8 +15,8 @@ data class MatchDto(
     @SerializedName("league") val league: LeagueDto?,
 ) {
     fun toDomain(): Match {
-        val home = participants?.firstOrNull { it.meta?.location == "home" }
-        val away = participants?.firstOrNull { it.meta?.location == "away" }
+        val home = participants?.getOrNull(0)
+        val away = participants?.getOrNull(1)
         return Match(
             id = id,
             homeName = home?.name.orEmpty(),
@@ -29,6 +29,7 @@ data class MatchDto(
         )
     }
 }
+
 
 data class ParticipantDto(
     @SerializedName("name") val name: String?,

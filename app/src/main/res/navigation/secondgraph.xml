@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/secondgraph.xml"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/basketFragment">
 
 
     <fragment
@@ -14,7 +14,20 @@
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.pinup.barapp.ui.fragments.BasketFragment"
-        android:label="BasketFragment" />
+        android:label="BasketFragment">
+
+        <action
+            android:id="@+id/action_basketFragment_to_QRFragment"
+            app:destination="@id/QRFragment" >
+
+
+        <argument
+        android:name="orderId"
+        app:argType="string"/>
+        </action>
+
+
+    </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.pinup.barapp.ui.fragments.ScheduleFragment"
@@ -24,5 +37,36 @@
         android:id="@+id/blankFragment"
         android:name="com.pinup.barapp.ui.fragments.BlankFragment"
         android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_blank">
+        <action
+            android:id="@+id/action_blankFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_blankFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_blankFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+        <action
+            android:id="@+id/action_blankFragment_to_fragmentBook"
+            app:destination="@id/fragmentBook" />
+        <action
+            android:id="@+id/action_blankFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBook"
+        android:name="com.pinup.barapp.ui.fragments.FragmentBook"
+        android:label="FragmentBook" />
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.pinup.barapp.ui.fragments.EventFragment"
+        android:label="fragment_event"
+        tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/QRFragment"
+        android:name="com.pinup.barapp.ui.fragments.QRFragment"
+        android:label="QRFragment" />
+
+
 </navigation>

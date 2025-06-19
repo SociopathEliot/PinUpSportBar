@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -48,11 +49,11 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    kapt("androidx.room:room-compiler:2.6.1") // ⬅️ обязательно
+    kapt("androidx.room:room-compiler:2.6.1") //
 
     // Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler) // ⬅️ замени ksp на kapt
+    kapt(libs.hilt.android.compiler)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
@@ -69,6 +70,8 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     testImplementation("androidx.test:core:1.6.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+
+    implementation("com.google.zxing:core:3.4.1")
 
     implementation(libs.glide)
 }

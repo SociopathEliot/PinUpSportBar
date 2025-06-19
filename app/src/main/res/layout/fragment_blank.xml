@@ -213,6 +213,7 @@
                         android:layout_marginBottom="16dp">
 
                         <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/eventCard"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -255,6 +256,7 @@
                             app:cardElevation="2dp">
 
                             <LinearLayout
+                                android:id="@+id/menuCard"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -293,6 +295,7 @@
                             app:cardElevation="2dp">
 
                             <LinearLayout
+                                android:id="@+id/cart"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -327,6 +330,7 @@
                             app:cardElevation="2dp">
 
                             <LinearLayout
+                                android:id="@+id/scheduleCard"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -358,6 +362,7 @@
                         app:cardElevation="2dp">
 
                         <LinearLayout
+                            android:id="@+id/bookingCard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
