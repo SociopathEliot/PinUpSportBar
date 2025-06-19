@@ -1,60 +1,77 @@
 package com.pinup.barapp.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pinup.barapp.R
+import com.pinup.barapp.domain.models.Event
+import com.pinup.barapp.ui.adapters.EventAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EventFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class EventFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class EventFragment : Fragment(R.layout.fragment_event) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    // обязательно уникальный id для каждого ивента!
+    val events = listOf(
+        Event(
+            id = 1,
+            title = "Happy Hour!",
+            description = "50% discount on cocktails from 18:00 to 20:00. Hurry up to enjoy the best mixes of the evening!",
+            imageRes = R.drawable.event_happy_hour
+        ),
+        Event(
+            id = 2,
+            title = "Burger & Pint",
+            description = "Juicy burger + glass of beer for only €9.99! Every Tuesday.",
+            imageRes = R.drawable.event_burger_pint
+        ),
+        Event(
+            id = 3,
+            title = "Match of the day: Bet on victory!",
+            description = "Come watch the top match and get a free shot for every goal of your favorite team!",
+            imageRes = R.drawable.event_match_day
+        ),
+        Event(
+            id = 4,
+            title = "Karaoke Night",
+            description = "Every Friday from 22:00 – get discounts on drinks! The best singer of the evening gets a prize!",
+            imageRes = R.drawable.event_karaoke_night
+        ),
+        Event(
+            id = 5,
+            title = "Whiskey and Poker Night",
+            description = "Play American poker and get a 20% discount on the entire range of whiskey.",
+            imageRes = R.drawable.event_whiskey_poker
+        ),
+        Event(
+            id = 6,
+            title = "Hen Party at Pin-up!",
+            description = "A compliment to every girl – a free cocktail for a table of 20€ or more.",
+            imageRes = R.drawable.event_hen_party
+        ),
+        Event(
+            id = 7,
+            title = "Birthday at Pin-up!",
+            description = "Birthday boys and girls get a set of shots as a gift! Just open your passport and celebrate loudly!",
+            imageRes = R.drawable.event_birthday
+        )
+    )
+
+    private lateinit var adapter: EventAdapter
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val recycler = view.findViewById<RecyclerView>(R.id.recyclerEvents)
+
+        // Передаём функцию, что делать при нажатии на карточку события
+        adapter = EventAdapter { event ->
+            findNavController().navigate(EventFragmentDirections.actionEventFragmentToEventFragmentDetail(event.id))
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EventFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EventFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        recycler.adapter = adapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        adapter.submitList(events)
     }
 }

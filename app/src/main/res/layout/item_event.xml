@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="22dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <!-- Обложка события -->
+        <ImageView
+            android:id="@+id/ivEvent"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/ic_launcher_background"
+            android:clipToOutline="true" />
+
+        <!-- Блок с текстом на темном фоне -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1B1B1B"
+            android:padding="14dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvEventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Happy Hour!"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/avantgarde_demi" />
+
+            <TextView
+                android:id="@+id/tvEventDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50% discount on cocktails from 18:00 to 20:00. Hurry up to enjoy the best mixes of the evening!"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/avantgarde_demi"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

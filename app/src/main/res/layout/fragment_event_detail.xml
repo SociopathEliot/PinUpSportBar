@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.EventFragmentDetail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Картинка события и кнопка назад -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginBottom="-35dp">
+
+            <ImageView
+                android:id="@+id/ivEventImage"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/ic_launcher_background"
+                android:clipToOutline="true"/>
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_button_round"
+                android:src="@drawable/ic_arrow_left"
+                android:scaleType="center"
+                android:elevation="4dp"/>
+        </FrameLayout>
+
+        <!-- Белый блок с закруглением сверху -->
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_rounded"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp">
+
+            <!-- Заголовок -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Happy Hour!"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/avantgarde_demi"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- Описание/подзаголовок -->
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="50% discount on cocktails from 18:00 to 20:00. Hurry up to enjoy the best mixes of the evening!"
+                android:textSize="15sp"
+                android:textColor="#666666"
+                android:fontFamily="@font/avantgarde_demi"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Время: отдельный контейнер -->
+            <LinearLayout
+                android:id="@+id/timeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_time_hint"
+                android:padding="10dp"
+                android:layout_marginBottom="18dp">
+
+                <TextView
+                    android:id="@+id/tvTimeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time:"
+                    android:textSize="15sp"
+                    android:textColor="#00A264"
+                    android:fontFamily="@font/avantgarde_demi"/>
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Every day from 18:00 to 20:00"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/avantgarde_demi"/>
+            </LinearLayout>
+
+            <!-- Основной инфоблок (например, What awaits you?) -->
+            <TextView
+                android:id="@+id/tvMainBlockTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What awaits you?"
+                android:textSize="16sp"
+                android:textColor="#FF0000"
+                android:fontFamily="@font/avantgarde_demi"
+                android:layout_marginBottom="5dp"/>
+
+            <!-- Список плюшек (динамически наполняется в коде) -->
+            <LinearLayout
+                android:id="@+id/featureListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp" />
+
+            <!-- Промо-блок (топовые коктейли и т.д.) -->
+            <TextView
+                android:id="@+id/tvPromoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top cocktails at a special price:"
+                android:textSize="16sp"
+                android:textColor="#FF0000"
+                android:fontFamily="@font/avantgarde_demi"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"/>
+
+            <!-- Список промо (динамически в коде) -->
+            <LinearLayout
+                android:id="@+id/promoListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"/>
+
+            <!-- How to use блок (светлый фон) -->
+            <LinearLayout
+                android:id="@+id/howToContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_time_hint"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvHowToTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How to use it?"
+                    android:textSize="15sp"
+                    android:textColor="#00A264"
+                    android:fontFamily="@font/avantgarde_demi"/>
+
+                <TextView
+                    android:id="@+id/tvHowTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Just come to the bar at the specified time and order cocktails at the promotion!"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/avantgarde_demi"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

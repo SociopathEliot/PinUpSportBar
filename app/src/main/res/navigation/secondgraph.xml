@@ -18,13 +18,7 @@
 
         <action
             android:id="@+id/action_basketFragment_to_QRFragment"
-            app:destination="@id/QRFragment" >
-
-
-        <argument
-        android:name="orderId"
-        app:argType="string"/>
-        </action>
+            app:destination="@id/QRFragment" />
 
 
     </fragment>
@@ -62,11 +56,27 @@
         android:id="@+id/eventFragment"
         android:name="com.pinup.barapp.ui.fragments.EventFragment"
         android:label="fragment_event"
-        tools:layout="@layout/fragment_event" />
+        tools:layout="@layout/fragment_event" >
+        <action
+            android:id="@+id/action_eventFragment_to_eventFragmentDetail"
+            app:destination="@id/eventFragmentDetail" />
+    </fragment>
     <fragment
         android:id="@+id/QRFragment"
         android:name="com.pinup.barapp.ui.fragments.QRFragment"
-        android:label="QRFragment" />
-
+        android:label="QRFragment" >
+        <argument
+            android:name="orderId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventFragmentDetail"
+        android:name="com.pinup.barapp.ui.fragments.EventFragmentDetail"
+        android:label="fragment_event_detail"
+        tools:layout="@layout/fragment_event_detail">
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
