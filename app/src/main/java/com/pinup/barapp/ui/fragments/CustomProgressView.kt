@@ -38,8 +38,8 @@ class CircleLoaderView @JvmOverloads constructor(
         val centerX = width / 2f
         val centerY = height / 2f
         val radius = width / 3.2f
-        val rectWidth = 50f
-        val rectHeight = 155f
+        val rectWidth = 30f
+        val rectHeight = 100f
 
 
         for (i in 0 until itemCount) {

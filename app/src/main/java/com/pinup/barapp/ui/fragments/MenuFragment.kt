@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -78,8 +79,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             cartViewModel.addToCart(cartItem)
         }
 
-
-
         binding.rvMenu.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMenu.adapter = adapter
 
@@ -93,23 +92,31 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     }
 
     private fun setupChips() {
-        fun refreshChips() {
-            binding.chipSelected.text = selected
-            binding.chipGroupUnselected.removeAllViews()
 
-            tags.filter { it != selected }.forEach { tag ->
-                val chip = Chip(requireContext(), null, R.style.Widget_App_MenuChipDefault).apply {
-                    text = tag
-                    setOnClickListener {
-                        selected = tag
-                        refreshChips()
-                        filterAndSubmit()
-                    }
+        val unselectedTags = tags.filter { it != selected }
+        val llUnselected = binding.llUnselectedChips
+        binding.chipSelected.text = selected
+        llUnselected.removeAllViews() // очищаем всё
+
+        unselectedTags.forEach { tag ->
+            val chip = Chip(requireContext(), null, R.style.Widget_App_MenuChipUnselected).apply {
+                text = tag
+                setOnClickListener {
+                    selected = tag
+                    setupChips()        // обновить чипы
+                    filterAndSubmit()   // твоя логика фильтрации
                 }
-                binding.chipGroupUnselected.addView(chip)
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                params.marginEnd = (16 * resources.displayMetrics.density).toInt()
+                layoutParams = params
             }
+            llUnselected.addView(chip)
         }
-        refreshChips()
     }
 
     private fun filterAndSubmit() {

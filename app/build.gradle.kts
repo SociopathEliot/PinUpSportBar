@@ -46,6 +46,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.volley)
 
+    implementation (libs.dimezis.blurview)
+
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -54,6 +56,7 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
@@ -72,6 +75,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 
     implementation("com.google.zxing:core:3.4.1")
+    implementation ("jp.wasabeef:blurry:4.0.1")
 
     implementation(libs.glide)
 }

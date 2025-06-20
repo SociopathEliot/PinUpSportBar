@@ -1,5 +1,6 @@
 package com.pinup.barapp.ui.fragments
 
+import HelpDialogFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,12 @@ class BlankFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cardsListener()
+
+        binding.btnContact.setOnClickListener {
+            HelpDialogFragment().show(parentFragmentManager, "HelpDialog")
+        }
+
+
     }
 
     private fun cardsListener() {

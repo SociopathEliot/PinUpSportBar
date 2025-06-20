@@ -15,35 +15,37 @@
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
     <!-- ваш кастомный чип -->
 
-    <style name="ShapeAppearance.MenuChip.Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">16dp</item>
-    </style>
 
     <!-- стиль для **выбранного** чипа -->
+    <!-- Selected Chip: Зеленый -->
     <style name="Widget.App.MenuChipSelected" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/chip_selected_bg</item>
-        <item name="android:textColor">@color/chip_selected_text</item>
-        <item name="chipIconTint">@color/chip_icon_tint</item>
+        <item name="chipBackgroundColor">#4DA764</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="chipStrokeWidth">0dp</item>
-        <item name="chipMinHeight">32dp</item>
-        <item name="android:insetLeft">12dp</item>
-        <item name="android:insetRight">12dp</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="android:textStyle">bold</item>
         <item name="checkedIconEnabled">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
     </style>
 
-    <!-- стиль для **невыбранных** чипов -->
-    <style name="Widget.App.MenuChipDefault" parent="Widget.MaterialComponents.Chip.Choice">
+    <!-- Unselected: Красный текст, прозрачный фон, красная обводка -->
+    <style name="Widget.App.MenuChipUnselected" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@android:color/transparent</item>
-        <item name="android:textColor">@color/chip_unselected_text</item>
-        <item name="chipStrokeColor">@color/chip_unselected_stroke</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <item name="chipMinHeight">32dp</item>
-        <item name="android:insetLeft">12dp</item>
-        <item name="android:insetRight">12dp</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="chipStrokeColor">@android:color/holo_red_light</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="android:textStyle">bold</item>
         <item name="checkedIconEnabled">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
     </style>
+
+    <!-- Скругление -->
+    <style name="ShapeAppearance.MenuChip.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 
     <style name="Widget.MyApp.TextInputLayout.Outline" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">#00A264</item>

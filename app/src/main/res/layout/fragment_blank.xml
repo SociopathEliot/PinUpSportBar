@@ -8,6 +8,12 @@
     tools:context="com.pinup.barapp.ui.fragments.BlankFragment">
 
 
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
 
     <LinearLayout
         android:orientation="vertical"
