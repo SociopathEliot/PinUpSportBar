@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/chip_icon_tint</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
@@ -29,21 +29,12 @@
     </style>
 
     <!-- Unselected: Красный текст, прозрачный фон, красная обводка -->
-    <style name="Widget.App.MenuChipUnselected" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@android:color/transparent</item>
-        <item name="chipStrokeColor">@android:color/holo_red_light</item>
-        <item name="chipStrokeWidth">2dp</item>
-        <item name="android:textColor">@android:color/holo_red_light</item>
-        <item name="chipMinHeight">36dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="checkedIconEnabled">false</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
-    </style>
+
 
     <!-- Скругление -->
-    <style name="ShapeAppearance.MenuChip.Rounded" parent="">
+    <style name="ShapeAppearance.MenuChip.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">80%</item>
     </style>
 
 
@@ -56,7 +47,16 @@
         <item name="boxCornerRadiusBottomEnd">16dp</item>
     </style>
 
-
+    <style name="Widget.App.MenuChipUnselected" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipStrokeColor">@android:color/holo_red_light</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="checkedIconEnabled">true</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+    </style>
 
 
 </resources>

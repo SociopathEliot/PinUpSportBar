@@ -6,12 +6,13 @@
     android:orientation="vertical"
     android:background="@drawable/bg_card_rounded"
     android:padding="12dp"
+
     android:layout_margin="8dp">
 
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="150dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_launcher_background"
         android:contentDescription="@string/app_name" />
@@ -22,8 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Pin-up Sunset"
         android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
         android:textColor="#000000" />
 
     <TextView
@@ -48,18 +49,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="$ 8.99"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000000" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/item_order_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="40dp"
             android:text="Order"
             android:textAllCaps="false"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:textColor="@android:color/white"
             android:textSize="13sp"
             android:backgroundTint="#E02020" />

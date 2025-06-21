@@ -18,6 +18,8 @@
     <color name="chip_selected_text">#FFFFFF</color>
     <color name="chip_icon_tint">#FFFFFF</color>
 
+
+
     <!-- default -->
     <color name="chip_unselected_stroke">#E02020</color>
     <color name="chip_unselected_text">#E02020</color>
