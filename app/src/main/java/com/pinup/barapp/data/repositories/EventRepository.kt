@@ -9,163 +9,205 @@ object EventRepository {
         Event(
             id = 1,
             title = "Happy Hour!",
-            description = "50% discount on cocktails from 18:00 to 20:00. Hurry up to enjoy the best mixes of the evening!",
+            description = "Скидка 50% на коктейли с 18:00 до 20:00. Успей насладиться лучшими миксами вечера!",
             imageRes = R.drawable.event_happy_hour,
             detail = EventDetail(
-                title = "Happy Hour!",
-                subtitle = "50% discount on cocktails from 18:00 to 20:00.",
-                mainInfo = "Great discounts on all cocktails during happy hours.",
-                timeTitle = "Time:",
-                timeValue = "Every day from 18:00 to 20:00",
-                featuresTitle = "What awaits you?",
+                title = "Happy Hour – Скидка 50% на коктейли!",
+                subtitle = "Каждый день с 18:00 до 20:00",
+                mainInfo = "Скидка 50% на весь ассортимент коктейлей. Идеальный повод расслабиться после рабочего дня. Атмосфера Pin-up: зажигательная музыка, стильный интерьер и крутые бармены.",
+                timeTitle = "Время проведения:",
+                timeValue = "Каждый день с 18:00 до 20:00",
+                featuresTitle = "Что вас ждет?",
                 features = listOf(
-                    "50% discount on the cocktail menu",
-                    "DJ sets on weekends"
+                    "Скидка 50% на весь ассортимент коктейлей.",
+                    "Идеальный повод расслабиться после рабочего дня.",
+                    "Атмосфера Pin-up: зажигательная музыка, стильный интерьер и крутые бармены."
                 ),
-                promoTitle = "Top cocktails at a special price:",
+                promoTitle = "Топовые коктейли по спеццене:",
                 promoList = listOf(
-                    "Mojito – €5",
-                    "Sex on the Beach – €5"
+                    "Пина Колада – 4.99€ вместо 9.99€",
+                    "Мохито – 3.99€ вместо 7.99€",
+                    "Маргарита – 4.49€ вместо 8.99€",
+                    "Космополитен – 4.99€ вместо 9.99€"
                 ),
                 extraTitle = null,
                 extraList = null,
-                howToTitle = "How to use it?",
-                howTo = "Just come to the bar during Happy Hour and order drinks"
+                howToTitle = "Как воспользоваться?",
+                howTo = "Просто приходите в бар в указанное время и заказывайте коктейли по акции. Собирайте друзей и начинайте вечер ярко!"
             )
         ),
         Event(
             id = 2,
-            title = "Burger & Pint",
-            description = "Juicy burger + glass of beer for only €9.99! Every Tuesday.",
+            title = "Бургер & Пинта",
+            description = "Сочный бургер + бокал пенного всего за 9.99€! Действует каждый вторник.",
             imageRes = R.drawable.event_burger_pint,
             detail = EventDetail(
-                title = "Burger & Pint",
-                subtitle = "Juicy burger + glass of beer for only €9.99!",
-                mainInfo = "Special offer for burger lovers.",
-                timeTitle = "Time:",
-                timeValue = "Every Tuesday 12:00 – 23:00",
-                featuresTitle = "What awaits you?",
+                title = "Бургер & Пинта – идеальный дуэт!",
+                subtitle = "Каждый вторник, весь день",
+                mainInfo = "Сочный бургер с говяжьей котлетой, свежими овощами и фирменным соусом. Бокал холодного пенного на выбор и всего за 9.99€ вместо 14.99€.",
+                timeTitle = "Время проведения:",
+                timeValue = "Каждый вторник, весь день",
+                featuresTitle = "Что в акции?",
                 features = listOf(
-                    "Any beer to choose",
-                    "Add fries for just €2"
+                    "Сочный бургер с говяжьей котлетой, свежими овощами и фирменным соусом.",
+                    "Бокал холодного пенного (500 мл) на выбор: светлое, тёмное или крафтовое.",
+                    "Всего за 9.99€ вместо 14.99€!"
                 ),
                 promoTitle = null,
                 promoList = null,
-                extraTitle = null,
-                extraList = null,
-                howToTitle = "How to get it?",
-                howTo = "Order the Burger & Pint set at the bar"
+                extraTitle = "Дополнительно:",
+                extraList = listOf(
+                    "Добавьте картофель фри всего за +1.99€.",
+                    "Выберите сырный топпинг за +0.99€."
+                ),
+                howToTitle = "Как воспользоваться?",
+                howTo = "Просто приходите во вторник и заказывайте \"Бургер & Пинта\" у официанта! Вкусный вторник ждет тебя – не пропусти!"
             )
         ),
         Event(
             id = 3,
-            title = "Match of the day: Bet on victory!",
-            description = "Come watch the top match and get a free shot for every goal of your favorite team!",
+            title = "Матч дня: Ставка на победу!",
+            description = "Приходи смотреть топовый матч и получи бесплатный шот за каждый гол любимой команды!",
             imageRes = R.drawable.event_match_day,
             detail = EventDetail(
-                title = "Match of the day",
-                subtitle = "Bet on victory and cheer loudly!",
-                mainInfo = "Free shot for every goal of your favorite team.",
-                timeTitle = "When:",
-                timeValue = "On main match days",
-                featuresTitle = null,
-                features = null,
-                promoTitle = null,
-                promoList = null,
+                title = "Матч дня: Ставка на победу!",
+                subtitle = "Болей и получай шоты",
+                mainInfo = "Бесплатный шот за каждый гол любимой команды.",
+                timeTitle = "Время проведения:",
+                timeValue = "Во время топовых футбольных матчей (следите за расписанием в приложении)",
+                featuresTitle = "В чем фишка?",
+                features = listOf(
+                    "Приходи в Pin-up Sports Bar смотреть лучший матч дня.",
+                    "Выбирай свою команду и болей всей душой!",
+                    "Получай бесплатный шот за каждый гол любимой команды."
+                ),
+                promoTitle = "Бонусы:",
+                promoList = listOf(
+                    "Командные акции – заказывайте сет закусок и получайте скидки на пиво!",
+                    "Футбольная атмосфера – большие экраны, живые эмоции, крутая компания.",
+                    "Призы для фанатов – угадай точный счет и выиграй фирменный коктейль!"
+                ),
                 extraTitle = null,
                 extraList = null,
-                howToTitle = "How it works?",
-                howTo = "Support your team and enjoy a shot on every goal"
+                howToTitle = "Как участвовать?",
+                howTo = "Приходи в бар перед началом матча. Сообщи официанту, за какую команду болеешь. Наслаждайся игрой и получай бесплатные шоты за голы своей команды! Футбол – это страсть, а с шотами от Pin-up – ещё и весело!"
             )
         ),
         Event(
             id = 4,
-            title = "Karaoke Night",
-            description = "Every Friday from 22:00 – get discounts on drinks! The best singer of the evening gets a prize!",
+            title = "Караоке-ночь",
+            description = "Каждую пятницу с 22:00 – пой и получай скидки на напитки! Лучший певец вечера получает приз!",
             imageRes = R.drawable.event_karaoke_night,
             detail = EventDetail(
-                title = "Karaoke Night",
-                subtitle = "Sing your heart out every Friday!",
-                mainInfo = "Discounts on drinks and prizes for the best singers.",
-                timeTitle = "Time:",
-                timeValue = "Fridays from 22:00",
-                featuresTitle = "What awaits you?",
+                title = "Караоке-ночь в Pin-up!",
+                subtitle = "Каждую пятницу с 22:00",
+                mainInfo = "Открытый микрофон и скидка 20% на коктейли для всех участников.",
+                timeTitle = "Время проведения:",
+                timeValue = "Каждую пятницу с 22:00",
+                featuresTitle = "Что вас ждет?",
                 features = listOf(
-                    "Prize for the best singer",
-                    "Discounts on cocktails"
+                    "Открытый микрофон для всех желающих!",
+                    "Скидка 20% на коктейли для всех участников.",
+                    "Приз лучшему певцу вечера – авторский коктейль от бармена!"
                 ),
                 promoTitle = null,
                 promoList = null,
-                extraTitle = null,
-                extraList = null,
-                howToTitle = "How to join?",
-                howTo = "Reserve a table or just come and pick your song"
+                extraTitle = "Как стать звездой вечера?",
+                extraList = listOf(
+                    "Выбери свою любимую песню.",
+                    "Покори зал своим голосом и харизмой.",
+                    "Получай бесплатные шоты за самые горячие выступления!"
+                ),
+                howToTitle = "Как участвовать?",
+                howTo = "Просто приходи, регистрируйся у ведущего и пой в удовольствие! Пятничная ночь – время блистать! Ждем тебя в Pin-up!"
             )
         ),
         Event(
             id = 5,
-            title = "Whiskey and Poker Night",
-            description = "Play American poker and get a 20% discount on the entire range of whiskey.",
+            title = "Виски & покер вечер",
+            description = "Сыграй в дружеский покер и получи скидку 20% на весь ассортимент виски.",
             imageRes = R.drawable.event_whiskey_poker,
             detail = EventDetail(
-                title = "Whiskey and Poker Night",
-                subtitle = "Poker tournament with whiskey discounts",
-                mainInfo = "Compete in poker and enjoy 20% off whiskey.",
-                timeTitle = "Time:",
-                timeValue = "Thursdays from 20:00",
-                featuresTitle = "Why join?",
+                title = "Виски & Покер вечер в Pin-up!",
+                subtitle = "Каждую среду с 20:00",
+                mainInfo = "Покерный вечер с 20% скидкой на виски и специальными сетами.",
+                timeTitle = "Время проведения:",
+                timeValue = "Каждую среду с 20:00",
+                featuresTitle = "Что вас ждет?",
                 features = listOf(
-                    "Poker tournament",
-                    "20% off all whiskey"
+                    "Атмосферный покерный вечер в кругу единомышленников.",
+                    "Скидка 20% на весь ассортимент виски для участников.",
+                    "Специальные покерные сеты с закусками и напитками.",
+                    "Приятные бонусы за удачные комбинации!"
                 ),
                 promoTitle = null,
                 promoList = null,
-                extraTitle = null,
-                extraList = null,
-                howToTitle = "How to participate?",
-                howTo = "Sign up for the tournament at the bar"
+                extraTitle = "Бонусная игра:",
+                extraList = listOf(
+                    "Флеш – бесплатный шот виски",
+                    "Фулл-хаус – скидка 30% на коктейль",
+                    "Стрит-флеш – авторский коктейль от бармена в подарок!"
+                ),
+                howToTitle = "Как участвовать?",
+                howTo = "Приходи в бар в среду и регистрируйся у ведущего. Играйте в дружеский покер, наслаждайтесь виски и атмосферой. Ловите удачу и получайте эксклюзивные бонусы! Проведи вечер в духе Pin-up – стиль, азарт и отличный виски!"
             )
         ),
         Event(
             id = 6,
-            title = "Hen Party at Pin-up!",
-            description = "A compliment to every girl – a free cocktail for a table of 20€ or more.",
+            title = "Девичник в Pin-up!",
+            description = "Комплимент для каждой девушки – бесплатный коктейль при заказе от 20€.",
             imageRes = R.drawable.event_hen_party,
             detail = EventDetail(
-                title = "Hen Party at Pin-up!",
-                subtitle = "Free cocktail for orders over 20€",
-                mainInfo = "Gather your girlfriends and have fun!",
-                timeTitle = "Time:",
-                timeValue = "Saturdays after 18:00",
-                featuresTitle = null,
-                features = null,
+                title = "Девичник в Pin-up!",
+                subtitle = "Каждую субботу с 20:00",
+                mainInfo = "Бесплатный коктейль при заказе от 20€. Яркая атмосфера и специальные сеты для девичников.",
+                timeTitle = "Время проведения:",
+                timeValue = "Каждую субботу с 20:00",
+                featuresTitle = "Что вас ждет?",
+                features = listOf(
+                    "Бесплатный коктейль для каждой девушки при заказе от 20€.",
+                    "Яркая Pin-up атмосфера – стильные декорации, музыка и специальные фотозоны.",
+                    "Специальные сеты закусок и коктейлей для шумных девичников.",
+                    "Диджей-сеты и тематические вечеринки."
+                ),
                 promoTitle = null,
                 promoList = null,
-                extraTitle = null,
-                extraList = null,
-                howToTitle = "How to get compliment?",
-                howTo = "Book a table and order drinks for 20€ or more"
+                extraTitle = "Комплимент на выбор:",
+                extraList = listOf(
+                    "\"Pink Lady\" – нежный вкус с нотками ванили и граната.",
+                    "\"Margarita Passion\" – классика с фруктовым акцентом.",
+                    "\"Sex on the Beach\" – культовый коктейль для яркой ночи."
+                ),
+                howToTitle = "Как воспользоваться?",
+                howTo = "Собирай подруг и приходи в субботу вечером. Заказывайте любимые блюда и напитки. Получайте бесплатный коктейль и наслаждайтесь вечеринкой! Настроение – флирт, стиль – Pin-up, напитки – идеальные!"
             )
         ),
         Event(
             id = 7,
-            title = "Birthday at Pin-up!",
-            description = "Birthday boys and girls get a set of shots as a gift! Just open your passport and celebrate loudly!",
+            title = "День рождения в Pin-up!",
+            description = "Именинникам – сет шотов в подарок! Просто покажи паспорт и отпразднуй громко!",
             imageRes = R.drawable.event_birthday,
             detail = EventDetail(
-                title = "Birthday at Pin-up!",
-                subtitle = "Shots set for the birthday person",
-                mainInfo = "Celebrate your birthday in a big way!",
-                timeTitle = "Any day:",
-                timeValue = "Celebrate whenever you like",
-                featuresTitle = null,
-                features = null,
+                title = "День рождения в Pin-up!",
+                subtitle = "Сет шотов и скидки для компании",
+                mainInfo = "Отмечай день рождения ярко – получи сет шотов в подарок и персональный коктейль!",
+                timeTitle = "Время проведения:",
+                timeValue = "В день твоего рождения + 3 дня после",
+                featuresTitle = "Как мы поздравляем?",
+                features = listOf(
+                    "Сет шотов в подарок для именинника!",
+                    "Скидка 10% на весь заказ для компании.",
+                    "Возможность заказать персональный коктейль с именем именинника.",
+                    "Яркое поздравление от команды бара и праздничная атмосфера!"
+                ),
                 promoTitle = null,
                 promoList = null,
-                extraTitle = null,
-                extraList = null,
-                howToTitle = "How to get gift?",
-                howTo = "Show your ID to the bartender"
+                extraTitle = "Бонус:",
+                extraList = listOf(
+                    "Если собираешь компанию от 6 человек, мы дарим еще бонусный коктейль!"
+                ),
+                howToTitle = "Как воспользоваться?",
+                howTo = "Приходи в день рождения или в течение 3 дней после. Покажи паспорт или ID официанту. Получи сет шотов и празднуй с размахом! Твой праздник – наши угощения! Ждем в Pin-up!"
             )
         )
     )
