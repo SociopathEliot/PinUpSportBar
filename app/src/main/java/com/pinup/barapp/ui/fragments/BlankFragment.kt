@@ -31,6 +31,7 @@ class BlankFragment : Fragment() {
         cardsListener()
 
         binding.btnContact.setOnClickListener {
+            (activity as? MainActivity)?.showBlur()
             HelpDialogFragment().show(parentFragmentManager, "HelpDialog")
         }
 
