@@ -42,6 +42,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
+        <!-- Скругление только у верхних углов -->
+        <style name="ShapeAppearance.App.TopRounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+            <item name="cornerFamily">rounded</item>
+            <item name="cornerSizeTopLeft">16dp</item>
+            <item name="cornerSizeTopRight">16dp</item>
+            <item name="cornerSizeBottomLeft">0dp</item>
+            <item name="cornerSizeBottomRight">0dp</item>
+        </style>
 
 
     <style name="Widget.MyApp.TextInputLayout.Outline" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
