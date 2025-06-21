@@ -3,17 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/qr_background">
+    android:background="@drawable/reservation_bg">
 
-    <ImageView
-        android:id="@+id/ivGirl"
-        android:layout_width="240dp"
-        android:layout_height="530dp"
-        android:elevation="0dp"
-        android:layout_gravity="bottom|end"
-        android:src="@drawable/qr_girl"
-        android:scaleType="fitCenter" />
-
+    <!-- 1) Содержимое с QR-карточкой -->
     <LinearLayout
         android:id="@+id/content"
         android:orientation="vertical"
@@ -54,7 +46,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:elevation="-1dp"
+            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -71,44 +63,48 @@
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter" />
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservation #9604"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#054A16"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="end" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
-        <TextView
-            android:id="@+id/tvOrderId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reservation #2849"
-            android:textColor="#054A16"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/tvEstimatedWait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estimated wait:\n10–12 minutes"
-            android:textColor="#054A16"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="2dp" />
     </LinearLayout>
+
+    <!-- 2) Девушка над QR -->
+    <ImageView
+        android:id="@+id/ivGirl"
+        android:layout_width="260dp"
+        android:layout_height="570dp"
+        android:layout_gravity="start|bottom"
+        android:src="@drawable/reservation_women"
+        android:scaleType="fitCenter"
+    />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackHome"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Back Home"
-        android:elevation="1dp"
-        android:textColor="#FFF"
-        android:textSize="18sp"
-        android:backgroundTint="#FF0000"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="24dp" />
+        android:layout_margin="24dp"
+        android:text="Back Home"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        app:elevation="20dp"
+        android:backgroundTint="#FF0000"
+        android:elevation="1dp"
+    />
+
 </FrameLayout>

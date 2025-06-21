@@ -212,10 +212,13 @@
             android:backgroundTint="#FF0000"
             app:cornerRadius="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            />
-
-
+            android:layout_marginStart="20dp" />
+        
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:translationY="500dp"-->
+<!--            android:src="@drawable/map"/>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirm"
@@ -231,5 +234,6 @@
             android:backgroundTint="#4DA764"/>
 
     </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

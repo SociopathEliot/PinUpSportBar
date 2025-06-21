@@ -10,7 +10,7 @@
         android:id="@+id/ivGirl"
         android:layout_width="240dp"
         android:layout_height="530dp"
-        android:elevation="0dp"
+        android:elevation="-1dp"
         android:layout_gravity="bottom|end"
         android:src="@drawable/qr_girl"
         android:scaleType="fitCenter"
@@ -60,10 +60,10 @@
 
         <!-- Блок QR и девушки -->
         <LinearLayout
-            android:orientation="horizontal"
-            android:elevation="-1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:elevation="-1dp"
+            android:orientation="horizontal">
 
             <!-- Карточка QR -->
             <androidx.cardview.widget.CardView
