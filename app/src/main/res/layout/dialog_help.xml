@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="#00A264"
+        android:background="@drawable/dialog_rounder"
         android:gravity="center_vertical">
 
         <TextView
