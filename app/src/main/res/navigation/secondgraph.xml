@@ -50,7 +50,11 @@
     <fragment
         android:id="@+id/fragmentBook"
         android:name="com.pinup.barapp.ui.fragments.FragmentBook"
-        android:label="FragmentBook" />
+        android:label="FragmentBook" >
+        <action
+            android:id="@+id/action_fragmentBook_to_reservationQrFragment"
+            app:destination="@id/reservationQrFragment" />
+    </fragment>
     <fragment
         android:id="@+id/eventFragment"
         android:name="com.pinup.barapp.ui.fragments.EventFragment"
@@ -77,5 +81,10 @@
             android:name="eventId"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/reservationQrFragment"
+        android:name="com.pinup.barapp.ui.fragments.ReservationQrFragment"
+        android:label="reservationQrFragment" />
 
 </navigation>

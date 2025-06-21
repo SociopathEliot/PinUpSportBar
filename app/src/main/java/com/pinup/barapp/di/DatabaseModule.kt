@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.pinup.barapp.data.local.AppDatabase
 import com.pinup.barapp.data.local.CartDao
+import com.pinup.barapp.data.local.ReservationDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +28,7 @@ object DatabaseModule {
 
     @Provides
     fun provideCartDao(db: AppDatabase): CartDao = db.cartDao()
+
+    @Provides
+    fun provideReservationDao(db: AppDatabase): ReservationDao = db.reservationDao()
 }
