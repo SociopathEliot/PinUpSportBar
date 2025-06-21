@@ -12,6 +12,7 @@ import com.pinup.barapp.databinding.DialogHelpBinding
 import com.pinup.barapp.ui.MainActivity
 import com.pinup.barapp.R
 
+
 class HelpDialogFragment : DialogFragment() {
     private var _binding: DialogHelpBinding? = null
     private val binding get() = _binding!!
