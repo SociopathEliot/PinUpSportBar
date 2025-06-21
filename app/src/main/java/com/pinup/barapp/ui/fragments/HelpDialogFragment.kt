@@ -3,34 +3,12 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.pinup.barapp.databinding.DialogHelpBinding
-import android.graphics.RenderEffect
-import android.graphics.Shader
-import android.os.Build
 import com.pinup.barapp.R
-import eightbitlab.com.blurview.BlurView
-import eightbitlab.com.blurview.RenderScriptBlur
 
 
-class HelpDialogFragment : DialogFragment() {
+class HelpDialogFragment(private val onDismissCallback: (() -> Unit)? = null) : DialogFragment() {
     private var _binding: DialogHelpBinding? = null
     private val binding get() = _binding!!
-
-    private fun showBlur(show: Boolean) {
-        val blurView = requireActivity().findViewById<BlurView>(R.id.blurView)
-        if (show) {
-            // Настраиваем blurView для overlay
-            val rootView = requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
-            blurView.setupWith(rootView)
-//                .setBlurAlgorithm(RenderScriptBlur(requireContext()))
-                .setBlurRadius(16f)
-                .setOverlayColor(0x99FFFFFF.toInt())
-//                .setHasFixedTransformationMatrix(true)
-            blurView.visibility = View.VISIBLE
-
-        } else {
-            blurView.visibility = View.GONE
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,7 +19,6 @@ class HelpDialogFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        showBlur(true)
         dialog?.window?.setLayout(
             (resources.displayMetrics.widthPixels * 0.85).toInt(),
             WindowManager.LayoutParams.WRAP_CONTENT
@@ -51,8 +28,8 @@ class HelpDialogFragment : DialogFragment() {
     }
 
     override fun onDismiss(dialog: DialogInterface) {
-        showBlur(false)
         super.onDismiss(dialog)
+        onDismissCallback?.invoke()
     }
 
     override fun onDestroyView() {

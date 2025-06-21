@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import eightbitlab.com.blurview.BlurView
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinup.barapp.R
@@ -15,6 +16,19 @@ import com.pinup.barapp.ui.MainActivity
 class BlankFragment : Fragment() {
 
     private lateinit var binding: FragmentBlankBinding
+
+    private fun showBlur(show: Boolean) {
+        val blurView = binding.blurView
+        if (show) {
+            val rootView = requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
+            blurView.setupWith(rootView)
+                .setBlurRadius(16f)
+                .setOverlayColor(0x99FFFFFF.toInt())
+            blurView.visibility = View.VISIBLE
+        } else {
+            blurView.visibility = View.GONE
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +45,9 @@ class BlankFragment : Fragment() {
         cardsListener()
 
         binding.btnContact.setOnClickListener {
-            HelpDialogFragment().show(parentFragmentManager, "HelpDialog")
+            showBlur(true)
+            HelpDialogFragment { showBlur(false) }
+                .show(parentFragmentManager, "HelpDialog")
         }
 
 
