@@ -21,4 +21,9 @@
         android:icon="@drawable/calendar_ic"
         android:title="" />
 
+    <item
+        android:id="@+id/fragmentBook"
+        android:icon="@drawable/booking_ic"
+        android:title=""/>
+
 </menu>

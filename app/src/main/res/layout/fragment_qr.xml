@@ -75,12 +75,10 @@
                 app:cardElevation="6dp">
 
                 <ImageView
-
                     android:id="@+id/ivQr"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                   />
+                    android:scaleType="fitCenter" />
             </androidx.cardview.widget.CardView>
 
             <!-- Девушка -->
@@ -128,7 +126,7 @@
         android:elevation="1dp"
         android:textColor="#FFF"
         android:textSize="18sp"
-        android:background="@drawable/rounded_button_red"
+        android:backgroundTint="#FF0000"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="24dp"/>
 </FrameLayout>

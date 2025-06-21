@@ -6,11 +6,15 @@
     import android.view.View
     import android.view.ViewGroup
     import android.widget.LinearLayout
+    import androidx.annotation.OptIn
     import androidx.core.content.ContextCompat
     import androidx.fragment.app.Fragment
     import androidx.fragment.app.viewModels
     import androidx.navigation.fragment.findNavController
     import androidx.recyclerview.widget.GridLayoutManager
+    import com.google.android.material.badge.BadgeDrawable
+    import com.google.android.material.badge.BadgeUtils
+    import com.google.android.material.badge.ExperimentalBadgeUtils
     import com.google.android.material.chip.Chip
     import com.pinup.barapp.R
     import com.pinup.barapp.databinding.FragmentMenuBinding
@@ -32,6 +36,7 @@
         private val tags = listOf("Drinks", "Starters", "Mains", "Desserts")
         private var selected = tags.first()
         private lateinit var chipViews: List<Chip>
+        private lateinit var cartBadge: BadgeDrawable
 
         private val drinksList = listOf(
             MenuItem(1, "Pin-up Sunset", "Vodka, peach liqueur, cranberry juice, and a splash of soda served over ice.", 8.99, R.drawable.sunset_im),
@@ -68,6 +73,8 @@
             return binding.root
         }
 
+
+        @OptIn(ExperimentalBadgeUtils::class)
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
@@ -89,39 +96,37 @@
                 findNavController().navigate(R.id.basketFragment)
             }
 
+            cartBadge = BadgeDrawable.create(requireContext()).apply {
+                badgeGravity    = BadgeDrawable.TOP_END
+
+                backgroundColor = ContextCompat.getColor(requireContext(), R.color.chip_stroke_default)
+                badgeTextColor  = ContextCompat.getColor(requireContext(), android.R.color.white)
+
+                badgeGravity    = BadgeDrawable.TOP_END
+
+                isVisible = false
+            }
+            BadgeUtils.attachBadgeDrawable(
+                cartBadge,
+                binding.ivCart,
+                binding.cartContainer
+            )
+            cartViewModel.totalQuantity.observe(viewLifecycleOwner) { count ->
+                if (count > 0) {
+                    cartBadge.number    = count
+                    cartBadge.isVisible = true
+                } else {
+                    cartBadge.isVisible = false
+                }
+            }
+
             setupChips()
             filterAndSubmit()
             observeCartCount()
         }
 
         private fun setupChips() {
-
-//            val unselectedTags = tags.filter { it != selected }
-//            val llUnselected = binding.llUnselectedChips
-//            binding.chipSelected.text = selected
-//            llUnselected.removeAllViews() // очищаем всё
-//
-//            unselectedTags.forEach { tag ->
-//                val chip = Chip(requireContext(),null, R.style.Widget_App_MenuChipUnselected).apply {
-//                    text = tag
-//                    isCheckable = false
-//                    setOnClickListener {
-//                        selected = tag
-//                        setupChips()        // обновить чипы
-//                        filterAndSubmit()   // твоя логика фильтрации
-//                    }
-//
-//                    val params = LinearLayout.LayoutParams(
-//                        LinearLayout.LayoutParams.WRAP_CONTENT,
-//                        LinearLayout.LayoutParams.WRAP_CONTENT
-//                    )
-//
-//                    params.marginEnd = (16 * resources.displayMetrics.density).toInt()
-//                    layoutParams = params
-//
-//                }
-//                llUnselected.addView(chip)
-//            }
+            // Собираем все чипы в список
             chipViews = listOf(
                 binding.chipDrinks,
                 binding.chipStarters,
@@ -129,17 +134,34 @@
                 binding.chipDesserts
             )
 
+            // Слушаем клик на каждый
             chipViews.forEach { chip ->
                 chip.setOnClickListener {
                     selected = chip.text.toString()
+                    // сначала обновим порядок вью и стили
+                    reorderChips(chip)
                     updateChipStyles()
                     filterAndSubmit()
                 }
             }
 
+            reorderChips(chipViews.first())
             updateChipStyles()
-
         }
+
+        private fun reorderChips(selectedChip: Chip) {
+            val parent = binding.chipContainer
+            val divider = binding.chipDivider
+
+            parent.removeAllViews()
+            parent.addView(selectedChip)
+            parent.addView(divider)
+
+            chipViews
+                .filter { it != selectedChip }
+                .forEach { parent.addView(it) }
+        }
+
         private fun updateChipStyles() {
             chipViews.forEach { chip ->
                 if (chip.text.toString() == selected) {
@@ -147,9 +169,9 @@
                 } else {
                     applyUnselectedStyle(chip)
                 }
-//                llUnselected.addView(chip)
             }
         }
+
 
         private fun applySelectedStyle(chip: Chip) {
             chip.chipBackgroundColor = ColorStateList.valueOf(
@@ -187,8 +209,8 @@
 
         private fun observeCartCount() {
             cartViewModel.totalQuantity.observe(viewLifecycleOwner) { count ->
-                binding.tvCartBadge.text = count.toString()
-                binding.tvCartBadge.visibility = if (count > 0) View.VISIBLE else View.GONE
+//                binding.tvCartBadge.text = count.toString()
+//                binding.tvCartBadge.visibility = if (count > 0) View.VISIBLE else View.GONE
             }
 
         }

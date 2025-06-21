@@ -24,17 +24,23 @@
         <item name="chipStrokeWidth">0dp</item>
         <item name="chipMinHeight">36dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="checkedIconEnabled">false</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="closeIconVisible">false</item>
+        <item name="closeIconEnabled">false</item>
+        <item name="android:checkable">false</item>
     </style>
 
-    <!-- Unselected: Красный текст, прозрачный фон, красная обводка -->
 
 
     <!-- Скругление -->
     <style name="ShapeAppearance.MenuChip.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">80%</item>
+    </style>
+
+    <style name="ImageCornerStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
 
@@ -54,9 +60,12 @@
         <item name="android:textColor">@android:color/holo_red_light</item>
         <item name="chipMinHeight">36dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="checkedIconEnabled">true</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.MenuChip.Rounded</item>
+        <item name="closeIconVisible">false</item>
+        <item name="closeIconEnabled">false</item>
+        <item name="android:checkable">false</item>
     </style>
+
 
 
 </resources>

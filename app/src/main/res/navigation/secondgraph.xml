@@ -20,7 +20,6 @@
             android:id="@+id/action_basketFragment_to_QRFragment"
             app:destination="@id/QRFragment" />
 
-
     </fragment>
     <fragment
         android:id="@+id/scheduleFragment"

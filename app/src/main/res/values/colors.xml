@@ -17,6 +17,8 @@
     <color name="chip_selected_bg">#6AA15F</color>
     <color name="chip_selected_text">#FFFFFF</color>
     <color name="chip_icon_tint">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#4DA764</color>
 
 
 
