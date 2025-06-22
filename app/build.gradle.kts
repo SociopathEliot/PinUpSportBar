@@ -39,7 +39,6 @@ android {
 }
 
 dependencies {
-    // UI и базовые
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
@@ -48,27 +47,22 @@ dependencies {
 
     implementation (libs.dimezis.blurview)
 
-    // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    kapt("androidx.room:room-compiler:2.6.1") //
+    kapt("androidx.room:room-compiler:2.6.1")
 
-    // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
 
-    // Coroutines
     implementation(libs.kotlinx.coroutines.android)
 
-    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.14")
 
     kapt(libs.androidx.room.compiler)
 
-    // Тесты
     testImplementation(libs.junit)
     testImplementation(libs.androidx.room.testing)
     testImplementation("androidx.test:core:1.6.1")

@@ -20,7 +20,6 @@ class EventFragment : Fragment(R.layout.fragment_event) {
         super.onViewCreated(view, savedInstanceState)
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerEvents)
 
-        // Передаём функцию, что делать при нажатии на карточку события
         adapter = EventAdapter { event ->
             findNavController().navigate(EventFragmentDirections.actionEventFragmentToEventFragmentDetail(event.id))
         }
