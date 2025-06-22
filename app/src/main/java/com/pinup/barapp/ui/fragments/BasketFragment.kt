@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBasketBinding
-import com.pinup.barapp.ui.MainActivity
 import com.pinup.barapp.ui.adapters.CartAdapter
 import com.pinup.barapp.ui.viewmodels.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,8 +30,6 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.GONE
-
         adapter = CartAdapter(
             onIncrease = { cartViewModel.increaseQuantity(it) },
             onDecrease = { cartViewModel.decreaseQuantity(it) },
@@ -62,7 +58,6 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
         _binding = null
     }
 }

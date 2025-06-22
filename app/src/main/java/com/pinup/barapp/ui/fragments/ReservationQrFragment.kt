@@ -9,12 +9,10 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentReservationQrBinding
-import com.pinup.barapp.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +31,6 @@ class ReservationQrFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.GONE
         val reservationId = "2849"
         val qrBitmap = generateQRCode(reservationId)
         binding.ivQr.setImageBitmap(qrBitmap)
@@ -46,7 +43,6 @@ class ReservationQrFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
         _binding = null
     }
 
