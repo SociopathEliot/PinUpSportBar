@@ -98,19 +98,17 @@
 
             cartBadge = BadgeDrawable.create(requireContext()).apply {
                 badgeGravity    = BadgeDrawable.TOP_END
-
                 backgroundColor = ContextCompat.getColor(requireContext(), R.color.chip_stroke_default)
                 badgeTextColor  = ContextCompat.getColor(requireContext(), android.R.color.white)
-
-                badgeGravity    = BadgeDrawable.TOP_END
-
                 isVisible = false
             }
-            BadgeUtils.attachBadgeDrawable(
-                cartBadge,
-                binding.ivCart,
-                binding.cartContainer
-            )
+            binding.ivCart.post {
+                BadgeUtils.attachBadgeDrawable(
+                    cartBadge,
+                    binding.ivCart,
+                    binding.cartContainer
+                )
+            }
             cartViewModel.totalQuantity.observe(viewLifecycleOwner) { count ->
                 if (count > 0) {
                     cartBadge.number    = count
@@ -205,6 +203,7 @@
 
 
         override fun onDestroyView() {
+            BadgeUtils.detachBadgeDrawable(cartBadge, binding.ivCart)
             super.onDestroyView()
             _binding = null
         }
