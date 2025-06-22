@@ -32,7 +32,14 @@ class MatchRepositoryImpl @Inject constructor(
 
     override suspend fun getUpcomingMatches(): List<Match> {
         val from = LocalDate.now()
-        val to = from.plusDays(7)
+        // fetch exactly the next 7 days including today
+        val to = from.plusDays(6)
+        return getMatchesBetween(from, to)
+    }
+
+    override suspend fun getRecentMatches(): List<Match> {
+        val to = LocalDate.now().minusDays(1)
+        val from = to.minusDays(6)
         return getMatchesBetween(from, to)
     }
 }
