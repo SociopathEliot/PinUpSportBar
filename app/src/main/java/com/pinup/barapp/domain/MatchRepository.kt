@@ -7,4 +7,9 @@ interface MatchRepository {
     suspend fun getUpcomingMatches(): List<Match>
 
     suspend fun getMatchesBetween(start: LocalDate, end: LocalDate): List<Match>
+
+    /**
+     * Return matches from the last seven days (excluding today).
+     */
+    suspend fun getRecentMatches(): List<Match>
 }
