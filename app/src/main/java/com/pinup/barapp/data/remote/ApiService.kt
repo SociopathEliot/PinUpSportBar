@@ -1,5 +1,5 @@
 package com.pinup.barapp.data.remote
-import retrofit2.Response // ✅ Добавить
+import retrofit2.Response
 import com.pinup.barapp.data.remote.dto.MatchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,6 +14,6 @@ interface ApiService {
         @Path("to") toDate: String,
         @Query("api_token") apiKey: String,
         @Query("include") include: String = "participants;league"
-    ): Response<MatchResponse> // ✅ Обёрнутый
+    ): Response<MatchResponse>
 
 }
