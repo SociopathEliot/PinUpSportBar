@@ -9,7 +9,6 @@
     tools:context=".ui.fragments.EventFragment"
     android:background="@color/white">
 
-    <!-- Header с отдельным цветом -->
     <LinearLayout
         android:id="@+id/headerBlock"
         android:layout_width="match_parent"
@@ -44,7 +43,6 @@
 
     </LinearLayout>
 
-    <!-- RecyclerView для событий -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerEvents"
         android:layout_width="match_parent"

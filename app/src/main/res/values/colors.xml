@@ -3,17 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="chip_bg_selected">#6AA15F</color>
-    <!-- обводка выбранного -->
     <color name="chip_stroke_selected">#6AA15F</color>
-    <!-- обводка и текст невыбранного -->
     <color name="chip_stroke_default">#E02020</color>
-    <!-- текст выбранного -->
     <color name="chip_text_selected">#FFFFFF</color>
-    <!-- текст невыбранного -->
     <color name="chip_text_default">#E02020</color>
     <color name="divider_gray">#E0E0E0</color>
 
-    <!-- selected -->
     <color name="chip_selected_bg">#6AA15F</color>
     <color name="chip_selected_text">#FFFFFF</color>
     <color name="chip_icon_tint">#FFFFFF</color>
@@ -22,7 +17,6 @@
 
 
 
-    <!-- default -->
     <color name="chip_unselected_stroke">#E02020</color>
     <color name="chip_unselected_text">#E02020</color>
 </resources>

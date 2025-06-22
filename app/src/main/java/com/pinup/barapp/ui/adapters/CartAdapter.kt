@@ -1,4 +1,3 @@
-// CartAdapter.kt
 package com.pinup.barapp.ui.adapters
 
 import android.view.LayoutInflater
