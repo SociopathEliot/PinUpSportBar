@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.pinup.barapp.ui.fragments.StartPinupFragment">
+    tools:context="com.pinup.barapp.ui.fragments.LaunchSportBarFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/loadingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Loading..."
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.pinup.barapp.ui.fragments.CircleLoaderView
-            android:id="@+id/circleLoaderView"
+            android:id="@+id/sportCircleLoaderView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"

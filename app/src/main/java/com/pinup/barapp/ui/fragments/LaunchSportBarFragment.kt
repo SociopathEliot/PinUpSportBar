@@ -11,25 +11,25 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.pinup.barapp.databinding.FragmentPinupSplashBinding
-import com.pinup.barapp.utils.WelcomePinupFragment.DEFAULT_DOMAIN_LINK
-import com.pinup.barapp.utils.WelcomePinupFragment.MAIN_OFFER_LINK_KEY
-import com.pinup.barapp.utils.WelcomePinupFragment.USER_STATUS_KEY
-import com.pinup.barapp.utils.WelcomePinupFragment.WELCOME_KEY
-import com.pinup.barapp.utils.WelcomePinupFragment.getSharedPreferences
-import com.pinup.barapp.utils.WelcomePinupFragment.launchNewFragmentWithoutBackstack
+import com.pinup.barapp.databinding.FragmentSportBarSplashBinding
+import com.pinup.barapp.utils.SportBarNavigation.DEFAULT_DOMAIN_LINK
+import com.pinup.barapp.utils.SportBarNavigation.SAVED_OFFER_KEY
+import com.pinup.barapp.utils.SportBarNavigation.USER_STATUS_FLAG
+import com.pinup.barapp.utils.SportBarNavigation.ONBOARDING_SHOWN_KEY
+import com.pinup.barapp.utils.SportBarNavigation.getSportBarPreferences
+import com.pinup.barapp.utils.SportBarNavigation.launchSportBarFragmentWithoutBackstack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
-class StartPinupFragment : Fragment() {
+class LaunchSportBarFragment : Fragment() {
 
-    private lateinit var binding: FragmentPinupSplashBinding
+    private lateinit var splashBinding: FragmentSportBarSplashBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPinupSplashBinding.inflate(inflater, container, false)
-        return binding.root
+        splashBinding = FragmentSportBarSplashBinding.inflate(inflater, container, false)
+        return splashBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,16 +45,16 @@ class StartPinupFragment : Fragment() {
     }
 
     private fun navigateToProjectFragment() {
-        val launchedBefore = context?.getSharedPreferences()?.getBoolean(WELCOME_KEY, false) == true
+        val launchedBefore = context?.getSportBarPreferences()?.getBoolean(ONBOARDING_SHOWN_KEY, false) == true
         if (launchedBefore) {
-            parentFragmentManager.launchNewFragmentWithoutBackstack(HomePinupFragment())
+            parentFragmentManager.launchSportBarFragmentWithoutBackstack(HomePinupFragment())
         } else {
-            parentFragmentManager.launchNewFragmentWithoutBackstack(WelcomePinupFragment())
+            parentFragmentManager.launchSportBarFragmentWithoutBackstack(WelcomePinupFragment())
         }
     }
 
     private fun handleAppInitialization() {
-        val offerLink = context?.getSharedPreferences()?.getString(MAIN_OFFER_LINK_KEY, "") ?: ""
+        val offerLink = context?.getSportBarPreferences()?.getString(SAVED_OFFER_KEY, "") ?: ""
         if (!isUser()) {
             navigateToProjectFragment()
         } else if (offerLink.isNotEmpty()) {
@@ -87,21 +87,21 @@ class StartPinupFragment : Fragment() {
 
     private fun navigateBasedOnOfferLink(offerLink: String) {
         if (offerLink.isNotEmpty()) {
-            parentFragmentManager.launchNewFragmentWithoutBackstack(WelcomePinupFragment())
+            parentFragmentManager.launchSportBarFragmentWithoutBackstack(WelcomePinupFragment())
         } else {
             navigateToProjectFragment()
         }
     }
 
     private fun saveLink(offerLink: String) {
-        context?.getSharedPreferences()?.edit { putString(MAIN_OFFER_LINK_KEY, offerLink)?.apply() }
+        context?.getSportBarPreferences()?.edit { putString(SAVED_OFFER_KEY, offerLink)?.apply() }
     }
 
     private fun saveUserFalse() {
-        context?.getSharedPreferences()?.edit { putBoolean(USER_STATUS_KEY, false)?.apply() }
+        context?.getSportBarPreferences()?.edit { putBoolean(USER_STATUS_FLAG, false)?.apply() }
     }
 
     private fun isUser(): Boolean {
-        return context?.getSharedPreferences()?.getBoolean(USER_STATUS_KEY, true) ?: true
+        return context?.getSportBarPreferences()?.getBoolean(USER_STATUS_FLAG, true) ?: true
     }
 }

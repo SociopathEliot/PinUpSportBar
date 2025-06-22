@@ -6,20 +6,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.pinup.barapp.R
 
-object WelcomePinupFragment {
+object SportBarNavigation {
     const val DEFAULT_PP_LINK = "https://sites.google.com/view/examplesampleprivacypolicy"
     const val DEFAULT_TOS_LINK = "https://sites.google.com/view/examplesampletermsofuse"
     const val DEFAULT_DOMAIN_LINK = "https://pastebin.com/raw/q1CQaY4k"
-    const val MAIN_OFFER_LINK_KEY = "main_offer_link"
-    const val USER_STATUS_KEY = "user_status"
-    const val WELCOME_KEY = "welcome"
+    const val SAVED_OFFER_KEY = "main_offer_link"
+    const val USER_STATUS_FLAG = "user_status"
+    const val ONBOARDING_SHOWN_KEY = "welcome"
     private const val SHARED_PREFERENCES_KEY = "example_sample_shared_preferences"
 
-    fun Context.getSharedPreferences(): SharedPreferences {
+    fun Context.getSportBarPreferences(): SharedPreferences {
         return this.getSharedPreferences(SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE)
     }
 
-    fun FragmentManager.launchNewFragment(fragment: Fragment) {
+    fun FragmentManager.launchSportBarFragment(fragment: Fragment) {
         this.beginTransaction().apply {
             replace(R.id.navHostFragment, fragment)
             addToBackStack(null)
@@ -27,7 +27,7 @@ object WelcomePinupFragment {
         }
     }
 
-    fun FragmentManager.launchNewFragmentWithoutBackstack(fragment: Fragment) {
+    fun FragmentManager.launchSportBarFragmentWithoutBackstack(fragment: Fragment) {
         this.beginTransaction().apply {
             replace(R.id.navHostFragment, fragment)
             commit()
