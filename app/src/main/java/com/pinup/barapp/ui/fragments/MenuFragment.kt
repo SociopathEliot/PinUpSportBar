@@ -122,11 +122,9 @@
 
             setupChips()
             filterAndSubmit()
-            observeCartCount()
         }
 
         private fun setupChips() {
-            // Собираем все чипы в список
             chipViews = listOf(
                 binding.chipDrinks,
                 binding.chipStarters,
@@ -134,11 +132,9 @@
                 binding.chipDesserts
             )
 
-            // Слушаем клик на каждый
             chipViews.forEach { chip ->
                 chip.setOnClickListener {
                     selected = chip.text.toString()
-                    // сначала обновим порядок вью и стили
                     reorderChips(chip)
                     updateChipStyles()
                     filterAndSubmit()
@@ -207,13 +203,6 @@
             adapter.submitList(list)
         }
 
-        private fun observeCartCount() {
-            cartViewModel.totalQuantity.observe(viewLifecycleOwner) { count ->
-//                binding.tvCartBadge.text = count.toString()
-//                binding.tvCartBadge.visibility = if (count > 0) View.VISIBLE else View.GONE
-            }
-
-        }
 
         override fun onDestroyView() {
             super.onDestroyView()

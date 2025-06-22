@@ -13,11 +13,7 @@
 
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
-    <!-- ваш кастомный чип -->
 
-
-    <!-- стиль для **выбранного** чипа -->
-    <!-- Selected Chip: Зеленый -->
     <style name="Widget.App.MenuChipSelected" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">#4DA764</item>
         <item name="android:textColor">@android:color/white</item>
@@ -32,7 +28,6 @@
 
 
 
-    <!-- Скругление -->
     <style name="ShapeAppearance.MenuChip.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">80%</item>
@@ -42,7 +37,6 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-        <!-- Скругление только у верхних углов -->
         <style name="ShapeAppearance.App.TopRounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
             <item name="cornerFamily">rounded</item>
             <item name="cornerSizeTopLeft">16dp</item>

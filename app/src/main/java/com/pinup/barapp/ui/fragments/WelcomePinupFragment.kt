@@ -28,7 +28,6 @@ class WelcomePinupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        //todo welcome fragment logic
         binding.nextMaterialButton.setOnClickListener {
             context?.getSportBarPreferences()?.edit { putBoolean(ONBOARDING_SHOWN_KEY, true).apply() }
             parentFragmentManager.launchSportBarFragmentWithoutBackstack(HomePinupFragment())

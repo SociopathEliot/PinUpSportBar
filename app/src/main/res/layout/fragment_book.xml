@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Заголовок -->
     <LinearLayout
         android:id="@+id/headerBlock"
         android:layout_width="0dp"
@@ -36,7 +35,6 @@
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
-    <!-- Прокручиваемая форма -->
     <ScrollView
         android:id="@+id/formScroll"
         android:layout_width="0dp"
@@ -57,7 +55,6 @@
             android:paddingTop="12dp"
             android:paddingBottom="24dp">
 
-            <!-- Full Name -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +76,6 @@
                     android:layout_marginTop="-15dp"/>
             </LinearLayout>
 
-            <!-- Phone -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +97,6 @@
                     android:layout_marginTop="-15dp"/>
             </LinearLayout>
 
-            <!-- Date & Time -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +104,6 @@
                 android:weightSum="2"
                 android:layout_marginBottom="15dp">
 
-                <!-- Date -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -132,7 +126,6 @@
                         android:layout_marginTop="-15dp"/>
                 </LinearLayout>
 
-                <!-- Time -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -156,7 +149,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Table Number -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -182,7 +174,6 @@
 
 
 
-    <!-- Нижний блок -->
     <FrameLayout
         android:id="@+id/footerBlock"
         android:layout_width="0dp"
@@ -214,11 +205,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp" />
         
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:translationY="500dp"-->
-<!--            android:src="@drawable/map"/>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirm"

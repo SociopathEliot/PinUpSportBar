@@ -31,15 +31,12 @@ class QRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Генерируем QR-код с orderId или уникальным текстом
         val orderId = args.orderId
         val qrBitmap = generateQRCode(orderId)
         binding.ivQr.setImageBitmap(qrBitmap)
         binding.tvOrderId.text = "Order #$orderId"
-        // Здесь можно также добавить Estimated wait и кнопку
 
         binding.btnBackHome.setOnClickListener {
-        // Или navController.navigate
             findNavController().navigateUp()
         }
     }
@@ -50,7 +47,7 @@ class QRFragment : Fragment() {
     }
 
     private fun generateQRCode(text: String): Bitmap {
-        val size = 512 // размер QR
+        val size = 512
         val bits = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, size, size)
         val bmp = createBitmap(size, size, Bitmap.Config.RGB_565)
         for (x in 0 until size) {
