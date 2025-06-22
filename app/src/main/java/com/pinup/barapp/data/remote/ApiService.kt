@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("fixtures/between/{from}/{to}?include=participants;participants.meta;league")
+    @GET("fixtures/between/{from}/{to}")
     suspend fun getMatchesNext7Days(
         @Path("from") fromDate: String,
         @Path("to") toDate: String,

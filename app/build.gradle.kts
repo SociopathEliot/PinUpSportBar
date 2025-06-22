@@ -72,6 +72,7 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     testImplementation("androidx.test:core:1.6.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.14")
 
     implementation("com.google.zxing:core:3.4.1")
     implementation ("jp.wasabeef:blurry:4.0.1")
