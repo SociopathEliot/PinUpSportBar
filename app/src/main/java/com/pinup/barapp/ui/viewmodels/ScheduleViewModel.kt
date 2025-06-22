@@ -23,4 +23,10 @@ class ScheduleViewModel @Inject constructor(
             _matches.value = repository.getUpcomingMatches()
         }
     }
+
+    fun loadRecentMatches() {
+        viewModelScope.launch {
+            _matches.value = repository.getRecentMatches()
+        }
+    }
 }
