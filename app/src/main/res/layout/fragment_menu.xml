@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- HEADER -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_container"
             android:layout_width="0dp"
@@ -76,7 +75,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_container">
 
-            <!-- Selected chip, всегда слева -->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_drinks"
                 style="@style/Widget.App.MenuChipSelected"
@@ -86,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:text="Drinks" />
 
-            <!-- Divider -->
             <View
                 android:id="@+id/chip_divider"
                 android:layout_width="1dp"
@@ -94,7 +91,6 @@
                 android:layout_marginStart="16dp"
                 android:background="@color/divider_gray" />
 
-            <!-- Контейнер для остальных чипов (пустой, всё делаем через код) -->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_starters"
                 android:layout_marginStart="16dp"
@@ -123,7 +119,6 @@
         </LinearLayout>
 
 
-        <!-- BODY: фон + RecyclerView -->
         <FrameLayout
             android:id="@+id/body_container"
             android:layout_width="0dp"

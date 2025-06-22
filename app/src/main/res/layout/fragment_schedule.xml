@@ -8,7 +8,6 @@
     android:background="@android:color/white"
     tools:context=".ui.fragments.ScheduleFragment">
 
-    <!-- 1) Декоративный фон, растягивается от секции месяца до низа -->
     <ImageView
         android:id="@+id/bgDecor"
         android:layout_width="0dp"
@@ -20,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 2) HEADER -->
     <LinearLayout
         android:id="@+id/header_section"
         android:layout_width="0dp"
@@ -69,7 +67,6 @@
             android:textSize="14sp"/>
     </LinearLayout>
 
-    <!-- 3) MONTH SELECTOR -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/month_section"
         android:layout_width="0dp"
@@ -105,7 +102,6 @@
             app:layout_constraintBottom_toBottomOf="@id/tvMonth"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 4) RECYCLER VIEW поверх декоративного фона -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSchedule"
         android:layout_width="0dp"

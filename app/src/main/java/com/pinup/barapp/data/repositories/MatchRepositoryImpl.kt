@@ -1,7 +1,6 @@
 package com.pinup.barapp.data.repositories
 
 import com.pinup.barapp.data.remote.ApiService
-import com.pinup.barapp.data.remote.RetrofitClient
 import com.pinup.barapp.domain.MatchRepository
 import com.pinup.barapp.domain.models.Match
 import jakarta.inject.Inject
@@ -13,16 +12,13 @@ class MatchRepositoryImpl @Inject constructor(
     private val api: ApiService
 ) : MatchRepository {
 
-    override suspend fun getUpcomingMatches(): List<Match> {
-        val from = LocalDate.of(2024, 5, 1)
-        val to = LocalDate.of(2024, 5, 7)
+    override suspend fun getMatchesBetween(start: LocalDate, end: LocalDate): List<Match> {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         return try {
             val response = api.getMatchesNext7Days(
-                formatter.format(from),
-                formatter.format(to),
-                RetrofitClient.API_KEY
+                formatter.format(start),
+                formatter.format(end)
             )
             if (response.isSuccessful) {
                 response.body()?.data?.map { it.toDomain() } ?: emptyList()
@@ -32,5 +28,18 @@ class MatchRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emptyList()
         }
+    }
+
+    override suspend fun getUpcomingMatches(): List<Match> {
+        val from = LocalDate.now()
+        // fetch exactly the next 7 days including today
+        val to = from.plusDays(6)
+        return getMatchesBetween(from, to)
+    }
+
+    override suspend fun getRecentMatches(): List<Match> {
+        val to = LocalDate.now().minusDays(1)
+        val from = to.minusDays(6)
+        return getMatchesBetween(from, to)
     }
 }

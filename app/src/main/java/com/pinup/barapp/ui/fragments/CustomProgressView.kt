@@ -49,7 +49,7 @@ class CircleLoaderView @JvmOverloads constructor(
 
             canvas.save()
             canvas.translate(x, y)
-            canvas.rotate(i * 30f + 90f) // << вот здесь поворот на 90° для "лежачих" палочек
+            canvas.rotate(i * 30f + 90f)
 
             val alpha = when {
                 i == currentFrame -> 255

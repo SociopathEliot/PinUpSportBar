@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:padding="12dp">
 
-    <!-- Image -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_item_image"
         android:layout_width="80dp"
@@ -19,8 +18,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:shapeAppearanceOverlay="@style/ImageCornerStyle"/>
 
-
-    <!-- Title -->
     <TextView
         android:id="@+id/tv_item_name"
         android:layout_width="0dp"
@@ -35,7 +32,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="8dp" />
 
-    <!-- Price -->
     <TextView
         android:id="@+id/tv_item_price"
         android:layout_width="wrap_content"
@@ -48,7 +44,6 @@
         app:layout_constraintStart_toStartOf="@id/tv_item_name"
         app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
-    <!-- Delete -->
     <ImageView
         android:id="@+id/btn_delete"
         android:layout_width="24dp"
@@ -59,7 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_item_price"/>
 
-    <!-- Quantity Controls -->
     <LinearLayout
         android:id="@+id/quantity_container"
         android:layout_width="wrap_content"

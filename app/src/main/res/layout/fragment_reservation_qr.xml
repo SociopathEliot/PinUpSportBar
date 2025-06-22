@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/reservation_bg">
 
-    <!-- 1) Содержимое с QR-карточкой -->
     <LinearLayout
         android:id="@+id/content"
         android:orientation="vertical"
@@ -83,7 +82,6 @@
 
     </LinearLayout>
 
-    <!-- 2) Девушка над QR -->
     <ImageView
         android:id="@+id/ivGirl"
         android:layout_width="260dp"
