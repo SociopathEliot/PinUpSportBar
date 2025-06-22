@@ -33,6 +33,16 @@ class HomePinupFragment : Fragment() {
         binding.bottomNavigation.setupWithNavController(navController)
         binding.bottomNavigation.selectedItemId = R.id.menuFragment
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.blankFragment,
+                R.id.basketFragment,
+                R.id.QRFragment,
+                R.id.reservationQrFragment -> binding.bottomNavigation.visibility = View.GONE
+                else -> binding.bottomNavigation.visibility = View.VISIBLE
+            }
+        }
+
 
     }
 }

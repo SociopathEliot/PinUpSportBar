@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentQrBinding
-import com.pinup.barapp.ui.MainActivity
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
 import androidx.navigation.fragment.findNavController
@@ -33,7 +31,6 @@ class QRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.GONE
         // Генерируем QR-код с orderId или уникальным текстом
         val orderId = args.orderId
         val qrBitmap = generateQRCode(orderId)
@@ -49,7 +46,6 @@ class QRFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as? MainActivity)?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
         _binding = null
     }
 
