@@ -51,7 +51,7 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
             findNavController().navigate(action)
         }
         binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_basketFragment_to_menuFragment)
         }
     }
 
