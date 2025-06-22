@@ -12,15 +12,13 @@ class MatchRepositoryImpl @Inject constructor(
     private val api: ApiService
 ) : MatchRepository {
 
-    override suspend fun getUpcomingMatches(): List<Match> {
-        val from = LocalDate.now()
-        val to = from.plusDays(7)
+    override suspend fun getMatchesBetween(start: LocalDate, end: LocalDate): List<Match> {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         return try {
             val response = api.getMatchesNext7Days(
-                formatter.format(from),
-                formatter.format(to)
+                formatter.format(start),
+                formatter.format(end)
             )
             if (response.isSuccessful) {
                 response.body()?.data?.map { it.toDomain() } ?: emptyList()
@@ -30,5 +28,11 @@ class MatchRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emptyList()
         }
+    }
+
+    override suspend fun getUpcomingMatches(): List<Match> {
+        val from = LocalDate.now()
+        val to = from.plusDays(7)
+        return getMatchesBetween(from, to)
     }
 }
