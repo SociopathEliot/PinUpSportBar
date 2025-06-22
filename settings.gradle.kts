@@ -11,7 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        id("androidx.navigation.safeargs") version "2.7.7" // или твоя версия navigation
+        id("androidx.navigation.safeargs") version "2.7.7"
     }
 }
 dependencyResolutionManagement {

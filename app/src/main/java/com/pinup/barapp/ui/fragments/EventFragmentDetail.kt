@@ -45,7 +45,6 @@ class EventFragmentDetail : Fragment() {
             binding.tvTimeTitle.text = detail.timeTitle
             binding.tvTime.text = detail.timeValue
 
-            // Features
             if (detail.features.isNullOrEmpty()) {
                 binding.tvMainBlockTitle.visibility = View.GONE
                 binding.featureListContainer.visibility = View.GONE
@@ -61,7 +60,6 @@ class EventFragmentDetail : Fragment() {
                 }
             }
 
-            // Promo list
             if (detail.promoList.isNullOrEmpty()) {
                 binding.tvPromoTitle.visibility = View.GONE
                 binding.promoListContainer.visibility = View.GONE
@@ -79,7 +77,6 @@ class EventFragmentDetail : Fragment() {
                 }
             }
 
-            // How to section
             if (detail.howTo.isBlank()) {
                 binding.howToContainer.visibility = View.GONE
             } else {
