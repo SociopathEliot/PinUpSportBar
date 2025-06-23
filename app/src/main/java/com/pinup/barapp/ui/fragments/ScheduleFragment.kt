@@ -38,7 +38,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
         val adapter1 = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.months_array,
-            R.layout.item_spinner_month // кастомный xml
+            R.layout.item_spinner_month
         )
 
         viewModel.matches.observe(viewLifecycleOwner) { list ->

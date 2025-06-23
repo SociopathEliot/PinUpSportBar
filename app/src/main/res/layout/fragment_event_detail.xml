@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Картинка события и кнопка назад -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -38,7 +37,6 @@
                 android:elevation="4dp"/>
         </FrameLayout>
 
-        <!-- Белый блок с закруглением сверху -->
         <LinearLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
@@ -50,7 +48,6 @@
             android:paddingLeft="22dp"
             android:paddingRight="22dp">
 
-            <!-- Заголовок -->
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
@@ -62,7 +59,6 @@
                 android:fontFamily="@font/avantgarde_demi"
                 android:layout_marginBottom="4dp"/>
 
-            <!-- Описание/подзаголовок -->
             <TextView
                 android:id="@+id/tvSubtitle"
                 android:layout_width="match_parent"
@@ -73,7 +69,6 @@
                 android:fontFamily="@font/avantgarde_demi"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Время: отдельный контейнер -->
             <LinearLayout
                 android:id="@+id/timeContainer"
                 android:layout_width="match_parent"
@@ -102,7 +97,6 @@
                     android:fontFamily="@font/avantgarde_demi"/>
             </LinearLayout>
 
-            <!-- Основной инфоблок (например, What awaits you?) -->
             <TextView
                 android:id="@+id/tvMainBlockTitle"
                 android:layout_width="match_parent"
@@ -113,7 +107,6 @@
                 android:fontFamily="@font/avantgarde_demi"
                 android:layout_marginBottom="5dp"/>
 
-            <!-- Список плюшек (динамически наполняется в коде) -->
             <LinearLayout
                 android:id="@+id/featureListContainer"
                 android:layout_width="match_parent"
@@ -121,7 +114,6 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp" />
 
-            <!-- Промо-блок (топовые коктейли и т.д.) -->
             <TextView
                 android:id="@+id/tvPromoTitle"
                 android:layout_width="match_parent"
@@ -133,7 +125,6 @@
                 android:layout_marginBottom="5dp"
                 android:visibility="gone"/>
 
-            <!-- Список промо (динамически в коде) -->
             <LinearLayout
                 android:id="@+id/promoListContainer"
                 android:layout_width="match_parent"
@@ -142,7 +133,6 @@
                 android:layout_marginBottom="15dp"
                 android:visibility="gone"/>
 
-            <!-- How to use блок (светлый фон) -->
             <LinearLayout
                 android:id="@+id/howToContainer"
                 android:layout_width="match_parent"
