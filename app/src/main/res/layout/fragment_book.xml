@@ -84,15 +84,37 @@
                 android:layout_marginBottom="15dp"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/etPhone"
+                <LinearLayout
+                    android:id="@+id/phoneInputContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_rounded_edit"
-                    android:hint="+1 (___) ___-____"
-                    android:inputType="phone"
-                    android:padding="25dp"
-                    android:textColorHint="@color/black" />
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etCountryCode"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:hint="+998"
+                        android:gravity="center_horizontal"
+                        android:inputType="phone"
+                        android:maxLength="4"
+                        android:textColorHint="@color/black"
+                        android:background="@drawable/bg_rounded_edit_only_right"
+                        android:paddingVertical="16dp" />
+
+                    <EditText
+                        android:id="@+id/etPhoneNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="(___) ___-___"
+                        android:inputType="phone"
+                        android:textColorHint="@color/black"
+                        android:background="@drawable/bg_rounded_edit_only_left"
+                        android:paddingVertical="16dp" />
+                </LinearLayout>
+
+
 
                 <View
                     android:layout_width="match_parent"

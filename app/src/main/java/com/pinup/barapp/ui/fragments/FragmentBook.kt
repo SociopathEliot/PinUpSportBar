@@ -40,10 +40,11 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         setupTablePrefix()
         setupDatePicker()
         setupTimePicker()
+
         binding.btnConfirm.setOnClickListener {
             val reservation = Reservation(
                 fullName = binding.etFullName.text.toString(),
-                phone = binding.etPhone.text.toString(),
+                phone = binding.etCountryCode.text.toString() + binding.etPhoneNumber.text.toString(),
                 date = binding.etDate.text.toString(),
                 time = binding.etTime.text.toString(),
                 tableNumber = binding.etTableNumber.text.toString()
@@ -68,30 +69,68 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
     }
 
     private fun setupPhoneMask() {
-        val mask = "+7(###)###-###"
-        binding.etPhone.addTextChangedListener(object : TextWatcher {
-            private var editing = false
+        binding.etCountryCode.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s == null) return
+
+                // Force prefix "+"
+                if (!s.startsWith("+")) {
+                    binding.etCountryCode.setText("+" + s.toString().replace("+", ""))
+                    binding.etCountryCode.setSelection(binding.etCountryCode.text.length)
+                }
+
+                // Max 3 digits after +
+                val digitsOnly = s.toString().filter { it.isDigit() }
+                if (digitsOnly.length > 3) {
+                    val trimmed = digitsOnly.take(3)
+                    binding.etCountryCode.setText("+$trimmed")
+                    binding.etCountryCode.setSelection(binding.etCountryCode.text.length)
+                }
+            }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                if (editing) return
-                editing = true
-                val digits = s.toString().filter { it.isDigit() }.take(9)
-                val builder = StringBuilder()
-                var index = 0
-                for (ch in mask) {
-                    if (ch == '#') {
-                        if (index < digits.length) builder.append(digits[index++])
-                    } else {
-                        builder.append(ch)
-                    }
-                }
-                binding.etPhone.setText(builder.toString())
-                binding.etPhone.setSelection(binding.etPhone.text.length)
-                editing = false
-            }
         })
+        binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
+            private var isEditing = false
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isEditing || s == null) return
+                isEditing = true
+
+                val digits = s.filter { it.isDigit() }
+                val formatted = StringBuilder()
+
+                if (digits.isNotEmpty()) {
+                    formatted.append("(")
+                    repeat(3) { i -> formatted.append(if (i < digits.length) digits[i] else '_') }
+                    formatted.append(") ")
+
+                    for (i in 3 until 6) {
+                        formatted.append(if (i < digits.length) digits[i] else '_')
+                    }
+
+                    formatted.append("-")
+                    for (i in 6 until 9) {
+                        formatted.append(if (i < digits.length) digits[i] else '_')
+                    }
+                } else {
+                    formatted.append("(___) ___-___")
+                }
+
+                binding.etPhoneNumber.setText(formatted)
+                binding.etPhoneNumber.setSelection(formatted.length.coerceAtMost(binding.etPhoneNumber.text.length))
+                isEditing = false
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+
+
     }
+
 
     private fun setupTablePrefix() {
         val prefix = "Table Number - #"
