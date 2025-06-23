@@ -31,7 +31,6 @@ class HomePinupFragment : Fragment() {
             .findFragmentById(R.id.fragment_container_view) as NavHostFragment
         val navController = navHost.navController
         binding.bottomNavigation.setupWithNavController(navController)
-        // Open BlankFragment as the default screen after onboarding
         binding.bottomNavigation.selectedItemId = R.id.blankFragment
 
         navController.addOnDestinationChangedListener { _, destination, _ ->

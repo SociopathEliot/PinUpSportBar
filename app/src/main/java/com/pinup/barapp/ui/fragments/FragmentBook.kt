@@ -102,7 +102,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
                 && tableNumber.isNotEmpty()
 
         binding.btnConfirm.isEnabled = isFormValid
-        binding.btnConfirm.alpha = if (isFormValid) 1f else 0.5f // Optional visual feedback
+        binding.btnConfirm.alpha = if (isFormValid) 1f else 0.5f
     }
 
     private fun setupPhoneMask() {
@@ -113,7 +113,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
                     if (isEditing || s == null) return
                     isEditing = true
 
-                    val digits = s.filter { it.isDigit() }.take(10) // Только 10 цифр
+                    val digits = s.filter { it.isDigit() }.take(10)
                     val formatted = StringBuilder()
 
                     formatted.append("(")

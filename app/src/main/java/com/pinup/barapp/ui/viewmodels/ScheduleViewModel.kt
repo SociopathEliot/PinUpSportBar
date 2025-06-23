@@ -26,11 +26,4 @@ class ScheduleViewModel @Inject constructor(
         }
     }
 
-//    fun loadMatchesForMonth(month: Month, year: Int = LocalDate.now().year) {
-//        viewModelScope.launch {
-//            val start = LocalDate.of(year, month, 1)
-//            val end = start.withDayOfMonth(start.lengthOfMonth())
-//            _matches.value = repository.getMatchesBetween(start, end)
-//        }
-//    }
 }
