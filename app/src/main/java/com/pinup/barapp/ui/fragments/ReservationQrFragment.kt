@@ -38,7 +38,7 @@ class ReservationQrFragment : Fragment() {
         binding.tvOrderId.text = "Order #$orderId"
 
         binding.btnBackHome.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack(R.id.blankFragment, false)
         }
     }
 
