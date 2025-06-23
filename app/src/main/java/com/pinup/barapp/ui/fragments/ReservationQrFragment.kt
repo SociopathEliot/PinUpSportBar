@@ -31,14 +31,21 @@ class ReservationQrFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val reservationId = "2849"
-        val qrBitmap = generateQRCode(reservationId)
+
+        val orderId = generateUniqueOrderId()
+        val qrBitmap = generateQRCode(orderId)
         binding.ivQr.setImageBitmap(qrBitmap)
-        binding.tvOrderId.text = "Reservation #$reservationId"
+        binding.tvOrderId.text = "Order #$orderId"
 
         binding.btnBackHome.setOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    private fun generateUniqueOrderId(): String {
+        val timestamp = System.currentTimeMillis()
+        val random = (100..999).random()
+        return "ORD-$timestamp-$random"
     }
 
     override fun onDestroyView() {

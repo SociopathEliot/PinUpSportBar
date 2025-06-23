@@ -46,8 +46,7 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
         }
 
         binding.btnConfirm.setOnClickListener {
-            val orderId = "2047"
-            val action = BasketFragmentDirections.actionBasketFragmentToQRFragment(orderId)
+            val action = BasketFragmentDirections.actionBasketFragmentToQRFragment()
             findNavController().navigate(action)
         }
         binding.btnBack.setOnClickListener {

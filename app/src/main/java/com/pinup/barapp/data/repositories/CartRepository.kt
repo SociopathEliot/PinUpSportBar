@@ -35,7 +35,7 @@ class CartRepository @Inject constructor(private val dao: CartDao) {
     suspend fun delete(item: CartItem) = dao.delete(item)
 
     suspend fun clearCart() = dao.clearCart()
-
+    suspend fun deleteAll(items: List<CartItem>) = dao.deleteAll(items)
 
     suspend fun increaseQuantity(item: CartItem) {
         dao.increaseQuantity(item.id)

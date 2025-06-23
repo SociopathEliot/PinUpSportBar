@@ -13,13 +13,19 @@ import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentQrBinding
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.pinup.barapp.ui.viewmodels.CartViewModel
+import com.pinup.barapp.ui.viewmodels.QrFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
+@AndroidEntryPoint
 class QRFragment : Fragment() {
 
     private var _binding: FragmentQrBinding? = null
     private val binding get() = _binding!!
-    private val args by navArgs<QRFragmentArgs>()
+    private val qrViewModel: QrFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -31,14 +37,22 @@ class QRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val orderId = args.orderId
+        val orderId = generateUniqueOrderId()
         val qrBitmap = generateQRCode(orderId)
         binding.ivQr.setImageBitmap(qrBitmap)
         binding.tvOrderId.text = "Order #$orderId"
 
+
         binding.btnBackHome.setOnClickListener {
-            findNavController().navigateUp()
+            qrViewModel.clearCart()
+            findNavController().popBackStack(R.id.blankFragment, false)
         }
+    }
+
+    private fun generateUniqueOrderId(): String {
+        val timestamp = System.currentTimeMillis()
+        val random = (100..999).random()
+        return "ORD-$timestamp-$random"
     }
 
     override fun onDestroyView() {

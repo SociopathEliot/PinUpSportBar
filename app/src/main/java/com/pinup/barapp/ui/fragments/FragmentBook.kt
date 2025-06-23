@@ -40,6 +40,8 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         setupTablePrefix()
         setupDatePicker()
         setupTimePicker()
+        setupValidationWatchers()
+        validateForm()
 
         binding.btnConfirm.setOnClickListener {
             val reservation = Reservation(
@@ -68,66 +70,75 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         }
     }
 
-    private fun setupPhoneMask() {
-        binding.etCountryCode.addTextChangedListener(object : TextWatcher {
+    private fun setupValidationWatchers() {
+        val watcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (s == null) return
-
-                // Force prefix "+"
-                if (!s.startsWith("+")) {
-                    binding.etCountryCode.setText("+" + s.toString().replace("+", ""))
-                    binding.etCountryCode.setSelection(binding.etCountryCode.text.length)
-                }
-
-                // Max 3 digits after +
-                val digitsOnly = s.toString().filter { it.isDigit() }
-                if (digitsOnly.length > 3) {
-                    val trimmed = digitsOnly.take(3)
-                    binding.etCountryCode.setText("+$trimmed")
-                    binding.etCountryCode.setSelection(binding.etCountryCode.text.length)
-                }
+                validateForm()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-        binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
-            private var isEditing = false
+        }
 
-            override fun afterTextChanged(s: Editable?) {
-                if (isEditing || s == null) return
-                isEditing = true
+        binding.etFullName.addTextChangedListener(watcher)
+        binding.etPhoneNumber.addTextChangedListener(watcher)
+        binding.etDate.addTextChangedListener(watcher)
+        binding.etTime.addTextChangedListener(watcher)
+        binding.etTableNumber.addTextChangedListener(watcher)
+    }
 
-                val digits = s.filter { it.isDigit() }
-                val formatted = StringBuilder()
 
-                if (digits.isNotEmpty()) {
+    private fun validateForm() {
+        val fullName = binding.etFullName.text.toString().trim()
+        val phone = binding.etPhoneNumber.text.toString().filter { it.isDigit() }
+        val date = binding.etDate.text.toString().trim()
+        val time = binding.etTime.text.toString().trim()
+        val tableNumber = binding.etTableNumber.text.toString().removePrefix("Table Number - #").trim()
+
+        val isFormValid = fullName.isNotEmpty()
+                && phone.length == 10
+                && date.isNotEmpty()
+                && time.isNotEmpty()
+                && tableNumber.isNotEmpty()
+
+        binding.btnConfirm.isEnabled = isFormValid
+        binding.btnConfirm.alpha = if (isFormValid) 1f else 0.5f // Optional visual feedback
+    }
+
+    private fun setupPhoneMask() {
+            binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
+                private var isEditing = false
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (isEditing || s == null) return
+                    isEditing = true
+
+                    val digits = s.filter { it.isDigit() }.take(10) // Только 10 цифр
+                    val formatted = StringBuilder()
+
                     formatted.append("(")
-                    repeat(3) { i -> formatted.append(if (i < digits.length) digits[i] else '_') }
-                    formatted.append(") ")
+                    for (i in 0 until 3) {
+                        formatted.append(if (i < digits.length) digits[i] else '_')
+                    }
 
+                    formatted.append(") ")
                     for (i in 3 until 6) {
                         formatted.append(if (i < digits.length) digits[i] else '_')
                     }
 
                     formatted.append("-")
-                    for (i in 6 until 9) {
+                    for (i in 6 until 10) {
                         formatted.append(if (i < digits.length) digits[i] else '_')
                     }
-                } else {
-                    formatted.append("(___) ___-___")
+
+                    binding.etPhoneNumber.setText(formatted)
+                    binding.etPhoneNumber.setSelection(formatted.length.coerceAtMost(binding.etPhoneNumber.text.length))
+                    isEditing = false
                 }
 
-                binding.etPhoneNumber.setText(formatted)
-                binding.etPhoneNumber.setSelection(formatted.length.coerceAtMost(binding.etPhoneNumber.text.length))
-                isEditing = false
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
-
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            })
 
     }
 

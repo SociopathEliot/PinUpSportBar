@@ -85,6 +85,7 @@
     <ImageView
         android:id="@+id/ivGirl"
         android:layout_width="260dp"
+        android:elevation="-1dp"
         android:layout_height="570dp"
         android:layout_gravity="start|bottom"
         android:src="@drawable/reservation_women"

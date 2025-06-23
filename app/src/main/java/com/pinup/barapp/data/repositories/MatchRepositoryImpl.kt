@@ -15,7 +15,7 @@ class MatchRepositoryImpl @Inject constructor(
 
     override suspend fun getUpcomingMatches(): List<Match> {
         val from = LocalDate.now()
-        val to = from.plusDays(7)
+        val to = from.plusDays(7    )
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         return try {

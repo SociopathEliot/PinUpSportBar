@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.pinup.barapp.databinding.FragmentSportBarPrivacyBinding
 import com.pinup.barapp.databinding.FragmentSportBarSplashBinding
 import com.pinup.barapp.utils.SportBarNavigation.DEFAULT_DOMAIN_LINK
 import com.pinup.barapp.utils.SportBarNavigation.SAVED_OFFER_KEY
@@ -87,7 +88,8 @@ class LaunchSportBarFragment : Fragment() {
 
     private fun navigateBasedOnOfferLink(offerLink: String) {
         if (offerLink.isNotEmpty()) {
-            parentFragmentManager.launchSportBarFragmentWithoutBackstack(WelcomePinupFragment())
+            parentFragmentManager.launchSportBarFragmentWithoutBackstack(
+                WelcomePinupFragment())
         } else {
             navigateToProjectFragment()
         }
