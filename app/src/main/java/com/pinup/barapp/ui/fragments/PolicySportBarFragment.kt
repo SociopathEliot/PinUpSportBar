@@ -39,7 +39,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.pinup.barapp.databinding.FragmentSportBarPrivacyBinding
-import com.pinup.barapp.databinding.OfflineNotificationLayoutBinding
+import com.pinup.barapp.databinding.NoInternetConnectionLayoutBinding
 import com.pinup.barapp.utils.SportBarNavigation.ONBOARDING_SHOWN_KEY
 import com.pinup.barapp.utils.SportBarNavigation.getSportBarPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchSportBarFragment
@@ -50,13 +50,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
 
     private lateinit var privacyBinding: FragmentSportBarPrivacyBinding
-    private lateinit var offlineBinding: OfflineNotificationLayoutBinding
+    private lateinit var offlineBinding: NoInternetConnectionLayoutBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         privacyBinding = FragmentSportBarPrivacyBinding.inflate(inflater, container, false)
-        offlineBinding = OfflineNotificationLayoutBinding.bind(privacyBinding.root)
+        offlineBinding = NoInternetConnectionLayoutBinding.bind(privacyBinding.root)
         return privacyBinding.root
     }
 
@@ -197,14 +197,14 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
     private fun showNoInternetScreen() {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         offlineBinding.apply {
-            rootOfflineNotificationLayout.visibility = View.VISIBLE
-            rootOfflineNotificationLayout.setOnClickListener { }
-            retryConnectionMaterialButton.setOnClickListener {
+            rootNoInternetLayout.visibility = View.VISIBLE
+            rootNoInternetLayout.setOnClickListener { }
+            retryConnectionButton.setOnClickListener {
                 activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
                 privacyBinding.policyWebView.reload()
-                rootOfflineNotificationLayout.visibility = View.GONE
+                rootNoInternetLayout.visibility = View.GONE
             }
-            offlineDemoModeButton.setOnClickListener {
+            demoModeButton.setOnClickListener {
                 navigateToProjectFragment()
             }
         }
