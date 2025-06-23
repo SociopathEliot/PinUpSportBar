@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/splashFragment">
 
@@ -11,15 +12,13 @@
             android:label="Splash" >
 
             <action
-                android:id="@+id/action_splashFragment_to_welcomeFragment"
-                app:destination="@id/welcomeFragment"
-                app:popUpTo="@id/splashFragment"
-                app:popUpToInclusive="true"/>
+                android:id="@+id/action_splashFragment_to_blankFragment2"
+                app:destination="@id/blankFragment2" />
         </fragment>
-
-        <fragment
-            android:id="@+id/welcomeFragment"
-            android:name="com.pinup.barapp.ui.fragments.WelcomePinupFragment"
-            android:label="Welcome" />
+    <fragment
+        android:id="@+id/blankFragment2"
+        android:name="com.pinup.barapp.ui.fragments.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 
 </navigation>

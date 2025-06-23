@@ -38,7 +38,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/offlineIconImageView" />
 
             <TextView
                 android:id="@+id/offlineMessageTextView"
@@ -51,7 +51,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/offlineTitleTextView" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retryConnectionMaterialButton"
@@ -65,7 +65,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/offlineMessageTextView" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/offlineDemoModeButton"
@@ -79,7 +79,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reconnect_offline_material_button" />
+                app:layout_constraintTop_toBottomOf="@+id/retryConnectionMaterialButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
