@@ -26,6 +26,12 @@ class HelpDialogFragment : DialogFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Dismiss dialog when cross button is clicked
+        binding.ivClose.setOnClickListener { dismiss() }
+    }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(

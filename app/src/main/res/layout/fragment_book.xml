@@ -65,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
+                    android:maxLength="15"
                     android:padding="25dp"
                     android:textColorHint="@color/black"
                     android:background="@drawable/bg_rounded_edit"/>
@@ -86,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="+1 (___) ___-____"
+                    android:inputType="phone"
                     android:padding="25dp"
                     android:textColorHint="@color/black"
                     android:background="@drawable/bg_rounded_edit"/>
@@ -115,6 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Select Date"
+                        android:focusable="false"
                         android:padding="25dp"
                         android:textColorHint="@color/black"
                         android:background="@drawable/bg_rounded_edit"/>
@@ -137,6 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Select Time"
+                        android:focusable="false"
                         android:padding="25dp"
                         android:textColorHint="@color/black"
                         android:background="@drawable/bg_rounded_edit"/>
@@ -159,6 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Table Number – #___"
+                    android:inputType="number"
                     android:padding="25dp"
                     android:textColorHint="@color/black"
                     android:background="@drawable/bg_rounded_edit"/>
