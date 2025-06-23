@@ -51,11 +51,11 @@ class ApiServiceTest {
     fun requestPathContainsQueryParams() = runBlocking {
         server.enqueue(MockResponse().setBody("{\"data\":[]}"))
 
-        api.getMatchesNext7Days("2024-01-01", "2024-01-08")
+        api.getMatchesNext7Days("2024-01-01", "2024-01-08", BuildConfig.API_KEY)
 
         val recorded = server.takeRequest()
         assertEquals(
-            "/fixtures/between/2024-01-01/2024-01-08?api_token=${BuildConfig.API_KEY}&include=participants;league",
+            "/fixtures/between/2024-01-01/2024-01-08?include=participants;participants.meta;league&api_token=${BuildConfig.API_KEY}&include=participants;league&api_token=${BuildConfig.API_KEY}",
             recorded.path
         )
     }
