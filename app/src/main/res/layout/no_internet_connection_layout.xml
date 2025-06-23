@@ -5,10 +5,10 @@
     tools:showIn="@layout/fragment_sport_bar_privacy">
 
     <FrameLayout
-        android:id="@+id/root_offline_notification_layout"
+        android:id="@+id/root_no_internet_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/welcome_screen_background"
         android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,69 +17,69 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/offlineIconImageView"
-                android:layout_width="150dp"
+                android:id="@+id/no_internet_icon_view"
+                android:layout_width="120dp"
                 android:layout_height="0dp"
-                android:src="@drawable/wifi_cross_icon"
+                android:src="@drawable/no_connection_icon"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/offlineTitleTextView"
+                android:id="@+id/no_internet_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
-                android:text="No Internet Connection"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offlineIconImageView" />
-
-            <TextView
-                android:id="@+id/offlineMessageTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Please connect to Wi-Fi or turn on mobile data and reconnect to keep using the app"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offlineTitleTextView" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/retryConnectionMaterialButton"
-                android:layout_width="196dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Reconnect"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offlineMessageTextView" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/offlineDemoModeButton"
-                android:layout_width="191dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Demo mode"
+                android:text="Connection Lost"
                 android:textColor="@color/white"
                 android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_internet_icon_view" />
+
+            <TextView
+                android:id="@+id/no_internet_message_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Check your connection and try again"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_internet_title_text_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry_connection_button"
+                android:layout_width="180dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/red"
+                android:text="Retry"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_internet_message_text_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/demo_mode_button"
+                android:layout_width="180dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/red"
+                android:text="Use Demo Mode"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/retryConnectionMaterialButton" />
+                app:layout_constraintTop_toBottomOf="@+id/retry_connection_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
