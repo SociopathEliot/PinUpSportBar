@@ -42,6 +42,20 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
             viewModel.addReservation(reservation)
             findNavController().navigate(R.id.reservationQrFragment)
         }
+        binding.btnShowMap.setOnClickListener {
+            binding.footerBlock.visibility = View.GONE
+            binding.mapImg.visibility = View.VISIBLE
+            binding.btnCloseMap.visibility = View.VISIBLE
+        }
+
+        binding.btnCloseMap.setOnClickListener {
+            binding.mapImg.visibility = View.GONE
+            binding.btnCloseMap.visibility = View.GONE
+            binding.footerBlock.visibility = View.VISIBLE
+            binding.bgImage.visibility = View.VISIBLE
+            binding.btnConfirm.visibility = View.VISIBLE
+
+        }
     }
 
     override fun onDestroyView() {
