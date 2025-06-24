@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.pinup.barapp.R
@@ -52,6 +53,17 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerMonth.adapter = adapter1
+        binding.spinnerMonth.setSelection(java.time.LocalDate.now().monthValue - 1)
+        var isFirst = true
+        binding.spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (isFirst) { isFirst = false; return }
+                val month = java.time.Month.of(position + 1)
+                viewModel.loadMatchesForMonth(month)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
 
     }
 

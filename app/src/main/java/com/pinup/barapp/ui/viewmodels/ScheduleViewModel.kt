@@ -9,7 +9,6 @@ import com.pinup.barapp.domain.models.Match
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import java.time.Month
 
 @HiltViewModel
@@ -23,6 +22,12 @@ class ScheduleViewModel @Inject constructor(
     fun loadMatches() {
         viewModelScope.launch {
             _matches.value = repository.getUpcomingMatches()
+        }
+    }
+
+    fun loadMatchesForMonth(month: Month) {
+        viewModelScope.launch {
+            _matches.value = repository.getMatchesByMonth(month)
         }
     }
 
