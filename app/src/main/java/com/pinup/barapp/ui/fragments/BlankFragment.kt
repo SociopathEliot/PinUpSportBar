@@ -12,13 +12,14 @@ import com.pinup.barapp.ui.MainActivity
 
 class BlankFragment : Fragment() {
 
-    private lateinit var binding: FragmentBlankBinding
+    private var _binding: FragmentBlankBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBlankBinding.inflate(inflater, container, false)
+        _binding = FragmentBlankBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,6 +37,7 @@ class BlankFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
     }
 
     private fun cardsListener() {

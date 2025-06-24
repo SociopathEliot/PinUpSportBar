@@ -16,12 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WelcomePinupFragment : Fragment() {
 
-    private lateinit var binding: FragmentWelcomePinupBinding
+    private var _binding: FragmentWelcomePinupBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWelcomePinupBinding.inflate(inflater, container, false)
+        _binding = FragmentWelcomePinupBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,5 +34,10 @@ class WelcomePinupFragment : Fragment() {
             parentFragmentManager.launchSportBarFragmentWithoutBackstack(HomePinupFragment())
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
