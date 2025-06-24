@@ -43,9 +43,8 @@ class ReservationQrFragment : Fragment() {
     }
 
     private fun generateUniqueOrderId(): String {
-        val timestamp = System.currentTimeMillis()
-        val random = (100..999).random()
-        return "ORD-$timestamp-$random"
+        val random = (0..9999).random().toString().padStart(4, '0')
+        return random
     }
 
     override fun onDestroyView() {

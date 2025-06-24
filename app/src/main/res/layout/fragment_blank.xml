@@ -70,33 +70,15 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
                     <TextView
                         android:id="@+id/tvPopular"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:fontFamily="@font/itx_kabel_std_demi"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="Popular Picks"
                         android:textColor="#212121"
                         android:textSize="20sp"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvSeeAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="See All"
-                        android:fontFamily="@font/inter_18pt_regular"
-                        android:textColor="#FF0000"
-                        android:textSize="14sp" />
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvTrending"

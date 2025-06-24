@@ -82,7 +82,7 @@
             android:background="@drawable/bg_quantity_circle"
             android:gravity="center"
             android:text="1"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <ImageView

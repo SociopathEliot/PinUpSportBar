@@ -89,7 +89,8 @@ class LaunchSportBarFragment : Fragment() {
     private fun navigateBasedOnOfferLink(offerLink: String) {
         if (offerLink.isNotEmpty()) {
             parentFragmentManager.launchSportBarFragmentWithoutBackstack(
-                WelcomePinupFragment())
+                PolicySportBarFragment(offerLink))
+//                WelcomePinupFragment())
         } else {
             navigateToProjectFragment()
         }
