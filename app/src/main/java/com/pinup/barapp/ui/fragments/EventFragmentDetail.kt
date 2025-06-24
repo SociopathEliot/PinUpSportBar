@@ -16,14 +16,15 @@ import com.pinup.barapp.domain.models.Event
 
 class EventFragmentDetail : Fragment() {
 
-    private lateinit var binding: FragmentEventDetailBinding
+    private var _binding: FragmentEventDetailBinding? = null
+    private val binding get() = _binding!!
     private val args by navArgs<EventFragmentDetailArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEventDetailBinding.inflate(inflater,container,false)
+        _binding = FragmentEventDetailBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -89,5 +90,10 @@ class EventFragmentDetail : Fragment() {
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

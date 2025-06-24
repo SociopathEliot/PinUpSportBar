@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentPinupHomeBinding
@@ -15,12 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomePinupFragment : Fragment() {
 
-    private lateinit var binding: FragmentPinupHomeBinding
+    private var _binding: FragmentPinupHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPinupHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentPinupHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,6 +35,16 @@ class HomePinupFragment : Fragment() {
         binding.bottomNavigation.setupWithNavController(navController)
         binding.bottomNavigation.selectedItemId = R.id.blankFragment
 
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.blankFragment -> {
+                    navController.popBackStack(R.id.blankFragment, false)
+                    true
+                }
+                else -> NavigationUI.onNavDestinationSelected(item, navController)
+            }
+        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.blankFragment,
@@ -44,5 +56,10 @@ class HomePinupFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

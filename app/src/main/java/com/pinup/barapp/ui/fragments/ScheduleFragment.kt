@@ -67,5 +67,10 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 }
