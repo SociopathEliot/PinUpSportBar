@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import com.pinup.barapp.databinding.FragmentWelcomePinupBinding
-import com.pinup.barapp.utils.SportBarNavigation.ONBOARDING_SHOWN_KEY
-import com.pinup.barapp.utils.SportBarNavigation.getSportBarPreferences
-import com.pinup.barapp.utils.SportBarNavigation.launchSportBarFragmentWithoutBackstack
+import com.pinup.barapp.utils.SportBarNavigation.WELCOME_KEY
+import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
+import com.pinup.barapp.utils.SportBarNavigation.launchNewFragmentWithoutBackstack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,8 +30,8 @@ class WelcomePinupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding.nextMaterialButton.setOnClickListener {
-            context?.getSportBarPreferences()?.edit { putBoolean(ONBOARDING_SHOWN_KEY, true).apply() }
-            parentFragmentManager.launchSportBarFragmentWithoutBackstack(HomePinupFragment())
+            context?.getSharedPreferences()?.edit { putBoolean(WELCOME_KEY, true).apply() }
+            parentFragmentManager.launchNewFragmentWithoutBackstack(HomePinupFragment())
         }
 
     }

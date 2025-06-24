@@ -40,24 +40,23 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.pinup.barapp.databinding.FragmentSportBarPrivacyBinding
 import com.pinup.barapp.databinding.NoInternetConnectionLayoutBinding
-import com.pinup.barapp.utils.SportBarNavigation.ONBOARDING_SHOWN_KEY
-import com.pinup.barapp.utils.SportBarNavigation.getSportBarPreferences
-import com.pinup.barapp.utils.SportBarNavigation.launchSportBarFragment
+import com.pinup.barapp.utils.SportBarNavigation.WELCOME_KEY
+import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
+import com.pinup.barapp.utils.SportBarNavigation.launchNewFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
-class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
-
-    private lateinit var privacyBinding: FragmentSportBarPrivacyBinding
-    private lateinit var offlineBinding: NoInternetConnectionLayoutBinding
+    private lateinit var binding: FragmentSportBarPrivacyBinding
+    private lateinit var binding2: NoInternetConnectionLayoutBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        privacyBinding = FragmentSportBarPrivacyBinding.inflate(inflater, container, false)
-        offlineBinding = NoInternetConnectionLayoutBinding.bind(privacyBinding.root)
-        return privacyBinding.root
+        binding = FragmentSportBarPrivacyBinding.inflate(inflater, container, false)
+        binding2 = NoInternetConnectionLayoutBinding.bind(binding.root)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,27 +70,27 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
     }
 
     private fun navigateToProjectFragment() {
-        val launchedBefore = context?.getSportBarPreferences()?.getBoolean(ONBOARDING_SHOWN_KEY, false) == true
+        val launchedBefore = context?.getSharedPreferences()?.getBoolean(WELCOME_KEY, false) == true
         if (launchedBefore) {
-            parentFragmentManager.launchSportBarFragment(HomePinupFragment())
+            parentFragmentManager.launchNewFragment(HomePinupFragment())
         } else {
-            parentFragmentManager.launchSportBarFragment(WelcomePinupFragment())
+            parentFragmentManager.launchNewFragment(WelcomePinupFragment())
         }
     }
 
     private fun handleInitPrivacy() {
         if (urlOffer.contains("https://sites.google.com/")) {
-            privacyBinding.homePolicyButton.visibility = View.VISIBLE
-            privacyBinding.homePolicyButton.setOnClickListener {
+            binding.homePrivacyPolicyMaterialButton.visibility = View.VISIBLE
+            binding.homePrivacyPolicyMaterialButton.setOnClickListener {
                 navigateToProjectFragment()
             }
         } else {
-            privacyBinding.homePolicyButton.visibility = View.GONE
+            binding.homePrivacyPolicyMaterialButton.visibility = View.GONE
         }
     }
 
     private fun setupWebView() {
-        ViewCompat.setOnApplyWindowInsetsListener(privacyBinding.root) { view, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
             val finalPadding = (imeHeight - navBarHeight).coerceAtLeast(0)
@@ -99,7 +98,7 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
             view.setPadding(0, 0, 0, finalPadding)
             insets
         }
-        privacyBinding.policyWebView.apply {
+        binding.privacyPolicyView.apply {
             configureWebView()
             loadUrl(urlOffer)
             setWebChromeClient(this, requireActivity())
@@ -107,15 +106,15 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
     }
 
     private fun setupDownloadListener() {
-        privacyBinding.policyWebView.setDownloadListener { url, _, contentDisposition, mimeType, _ ->
+        binding.privacyPolicyView.setDownloadListener { url, _, contentDisposition, mimeType, _ ->
             setupDownloadManager(url, contentDisposition, mimeType, requireActivity())
         }
     }
 
     private fun setupBackNavigationListener() {
-        privacyBinding.policyWebView.setOnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP && privacyBinding.policyWebView.canGoBack()) {
-                privacyBinding.policyWebView.goBack()
+        binding.privacyPolicyView.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP && binding.privacyPolicyView.canGoBack()) {
+                binding.privacyPolicyView.goBack()
                 true
             } else {
                 false
@@ -167,7 +166,7 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
         override fun onReceivedError(
             view: WebView?, request: WebResourceRequest?, error: WebResourceError?
         ) {
-            privacyBinding.privacyProgressBar.visibility = View.GONE
+            binding.progressBarView.visibility = View.GONE
             if (!isInternetAvailable()) {
                 showNoInternetScreen()
             }
@@ -175,7 +174,7 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            privacyBinding.privacyProgressBar.visibility = View.GONE
+            binding.progressBarView.visibility = View.GONE
         }
     }
 
@@ -196,15 +195,15 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
 
     private fun showNoInternetScreen() {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        offlineBinding.apply {
-            rootNoInternetLayout.visibility = View.VISIBLE
-            rootNoInternetLayout.setOnClickListener { }
-            retryConnectionButton.setOnClickListener {
+        binding2.apply {
+            rootNoInternetConnectionLayout.visibility = View.VISIBLE
+            rootNoInternetConnectionLayout.setOnClickListener { }
+            reconnectOfflineMaterialButton.setOnClickListener {
                 activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
-                privacyBinding.policyWebView.reload()
-                rootNoInternetLayout.visibility = View.GONE
+                binding.privacyPolicyView.reload()
+                rootNoInternetConnectionLayout.visibility = View.GONE
             }
-            demoModeButton.setOnClickListener {
+            demoModeOfflineMaterialButton.setOnClickListener {
                 navigateToProjectFragment()
             }
         }
@@ -241,7 +240,7 @@ class PolicySportBarFragment(private val urlOffer: String) : Fragment() {
             url.startsWith("intent://") -> launchIntentLink(url)
 
             else -> {
-                privacyBinding.policyWebView.loadUrl(url)
+                binding.privacyPolicyView.loadUrl(url)
                 false
             }
         }
