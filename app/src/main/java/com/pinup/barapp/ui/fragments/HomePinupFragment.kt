@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -32,6 +33,13 @@ class HomePinupFragment : Fragment() {
         val navHost = childFragmentManager
             .findFragmentById(R.id.fragment_container_view) as NavHostFragment
         val navController = navHost.navController
+        val bottomDestinations = setOf(
+            R.id.blankFragment,
+            R.id.menuFragment,
+            R.id.scheduleFragment,
+            R.id.eventFragment,
+            R.id.fragmentBook
+        )
         binding.bottomNavigation.setupWithNavController(navController)
         binding.bottomNavigation.selectedItemId = R.id.blankFragment
 
@@ -54,6 +62,22 @@ class HomePinupFragment : Fragment() {
                 else -> binding.bottomNavigation.visibility = View.VISIBLE
             }
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val currentId = navController.currentDestination?.id
+                if (currentId in bottomDestinations) {
+                    if (currentId != R.id.blankFragment) {
+                        navController.popBackStack(R.id.blankFragment, false)
+                    } else {
+                        requireActivity().finish()
+                    }
+                } else {
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        })
 
 
     }
