@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.pinup.barapp.ui.fragments.BlankFragment"
+        android:name="com.pinup.barapp.ui.fragments.MainScreen"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank">
         <action

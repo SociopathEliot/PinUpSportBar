@@ -45,7 +45,6 @@ import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchNewFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
     private lateinit var binding: FragmentSportBarPrivacyBinding

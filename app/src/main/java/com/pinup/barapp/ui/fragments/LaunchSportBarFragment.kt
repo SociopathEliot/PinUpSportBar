@@ -19,7 +19,6 @@ import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchNewFragmentWithoutBackstack
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class LaunchSportBarFragment : Fragment() {
 
     private lateinit var binding: FragmentSportBarSplashBinding

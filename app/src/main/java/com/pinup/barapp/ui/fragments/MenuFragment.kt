@@ -133,28 +133,14 @@
             chipViews.forEach { chip ->
                 chip.setOnClickListener {
                     selected = chip.text.toString()
-                    reorderChips(chip)
                     updateChipStyles()
                     filterAndSubmit()
                 }
             }
 
-            reorderChips(chipViews.first())
             updateChipStyles()
         }
 
-        private fun reorderChips(selectedChip: Chip) {
-            val parent = binding.chipContainer
-            val divider = binding.chipDivider
-
-            parent.removeAllViews()
-            parent.addView(selectedChip)
-            parent.addView(divider)
-
-            chipViews
-                .filter { it != selectedChip }
-                .forEach { parent.addView(it) }
-        }
 
         private fun updateChipStyles() {
             chipViews.forEach { chip ->

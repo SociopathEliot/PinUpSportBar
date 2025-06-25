@@ -68,14 +68,10 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (currentItems.isEmpty()) {
-                    requireActivity().finish()
-                } else {
-                    isEnabled = false
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
-                }
+                findNavController().navigate(R.id.blankFragment)
             }
         })
+
     }
 
 

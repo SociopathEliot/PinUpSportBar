@@ -64,59 +64,66 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <HorizontalScrollView
             android:id="@+id/chip_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/header_container"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_container">
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_drinks"
-                style="@style/Widget.App.MenuChipSelected"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="16dp"
-
-                android:layout_height="wrap_content"
-                android:text="Drinks" />
-
-            <View
-                android:id="@+id/chip_divider"
-                android:layout_width="1dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/divider_gray" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_starters"
-                android:layout_marginStart="16dp"
-
-                style="@style/Widget.App.MenuChipUnselected"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Starters" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_mains"
-                style="@style/Widget.App.MenuChipUnselected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Mains" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_drinks"
+                    style="@style/Widget.App.MenuChipSelected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Drinks" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_desserts"
-                style="@style/Widget.App.MenuChipUnselected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Desserts" />
+                <View
+                    android:id="@+id/chip_divider"
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/divider_gray" />
 
-        </LinearLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_starters"
+                    style="@style/Widget.App.MenuChipUnselected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Starters" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_mains"
+                    style="@style/Widget.App.MenuChipUnselected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Mains" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_desserts"
+                    style="@style/Widget.App.MenuChipUnselected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Desserts" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
         <FrameLayout

@@ -17,7 +17,7 @@
         </fragment>
     <fragment
         android:id="@+id/blankFragment2"
-        android:name="com.pinup.barapp.ui.fragments.BlankFragment"
+        android:name="com.pinup.barapp.ui.fragments.MainScreen"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
 

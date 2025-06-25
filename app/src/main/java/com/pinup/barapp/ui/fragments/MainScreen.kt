@@ -10,7 +10,7 @@ import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBlankBinding
 import com.pinup.barapp.ui.MainActivity
 
-class BlankFragment : Fragment() {
+class MainScreen : Fragment() {
 
     private var _binding: FragmentBlankBinding? = null
     private val binding get() = _binding!!
