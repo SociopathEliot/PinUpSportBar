@@ -2,6 +2,7 @@ package com.pinup.barapp.ui.fragments
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -9,6 +10,11 @@ import com.google.android.material.timepicker.TimeFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -42,6 +48,14 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         setupTimePicker()
         setupValidationWatchers()
         validateForm()
+        setupScrollOnFocus()
+        handleKeyboardInsets()
+        applyKeyboardInsetFix()
+
+        binding.etPhoneNumber.filters = arrayOf(InputFilter { source, _, _, dest, _, _ ->
+            val digits = (dest.toString() + source.toString()).filter { it.isDigit() }
+            if (digits.length > 10) "" else null
+        })
 
         binding.btnConfirm.setOnClickListener {
             val reservation = Reservation(
@@ -69,6 +83,16 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
 
         }
     }
+    private fun applyKeyboardInsetFix() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.footerBlock) { view, insets ->
+            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val nav = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+
+            view.updatePadding(bottom = maxOf(ime.bottom, nav.bottom))
+            insets
+        }
+    }
+
 
     private fun setupValidationWatchers() {
         val watcher = object : TextWatcher {
@@ -105,65 +129,112 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         binding.btnConfirm.alpha = if (isFormValid) 1f else 0.5f
     }
 
+    private fun handleKeyboardInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+            binding.formScroll.setPadding(0, 0, 0, imeHeight)
+            insets
+        }
+    }
+
     private fun setupPhoneMask() {
-            binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
-                private var isEditing = false
+        binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
+            private var isEditing = false
+            private var lastFormatted = ""
 
-                override fun afterTextChanged(s: Editable?) {
-                    if (isEditing || s == null) return
-                    isEditing = true
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-                    val digits = s.filter { it.isDigit() }.take(10)
-                    val formatted = StringBuilder()
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-                    formatted.append("(")
-                    for (i in 0 until 3) {
-                        formatted.append(if (i < digits.length) digits[i] else '_')
-                    }
+            override fun afterTextChanged(s: Editable?) {
+                if (isEditing || s == null) return
+                isEditing = true
 
-                    formatted.append(") ")
-                    for (i in 3 until 6) {
-                        formatted.append(if (i < digits.length) digits[i] else '_')
-                    }
+                val digits = s.filter { it.isDigit() }.take(10)
 
-                    formatted.append("-")
-                    for (i in 6 until 10) {
-                        formatted.append(if (i < digits.length) digits[i] else '_')
-                    }
-
-                    binding.etPhoneNumber.setText(formatted)
-                    binding.etPhoneNumber.setSelection(formatted.length.coerceAtMost(binding.etPhoneNumber.text.length))
-                    isEditing = false
+                val formatted = buildString {
+                    if (digits.isNotEmpty()) append("(")
+                    for (i in 0 until 3) append(if (i < digits.length) digits[i] else "_")
+                    if (digits.isNotEmpty()) append(") ")
+                    for (i in 3 until 6) append(if (i < digits.length) digits[i] else "_")
+                    append("-")
+                    for (i in 6 until 10) append(if (i < digits.length) digits[i] else "_")
                 }
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            })
+                val selection = formatted.indexOf('_').takeIf { it != -1 } ?: formatted.length
 
+                if (formatted != lastFormatted) {
+                    binding.etPhoneNumber.setText(formatted)
+                    binding.etPhoneNumber.setSelection(selection)
+                    lastFormatted = formatted
+                }
+
+                isEditing = false
+            }
+        })
     }
+
+
+
+
+    private fun setupScrollOnFocus() {
+        val scrollView = binding.formScroll
+
+        val editTexts = listOf(
+            binding.etFullName,
+            binding.etPhoneNumber,
+            binding.etTableNumber,
+            binding.etDate,
+            binding.etTime
+        )
+
+        editTexts.forEach { editText ->
+            editText.setOnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, v.top - 100)
+                    }
+                }
+            }
+        }
+    }
+
 
 
     private fun setupTablePrefix() {
         val prefix = "Table Number - #"
         binding.etTableNumber.setText(prefix)
         binding.etTableNumber.setSelection(binding.etTableNumber.text.length)
+
         binding.etTableNumber.addTextChangedListener(object : TextWatcher {
             private var editing = false
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 if (editing || s == null) return
                 editing = true
 
-                val digits = s.toString().removePrefix(prefix).filter { it.isDigit() }.take(15)
+                val rawDigits = s.toString().removePrefix(prefix).filter { it.isDigit() }
+                val validDigits = rawDigits.take(3)
 
-                val result = prefix + digits
+                val number = validDigits.toIntOrNull()
+                if (number != null && number > 15) {
+                    Toast.makeText(binding.root.context, "Limit is 15 tables", Toast.LENGTH_SHORT).show()
+                }
+
+
+                val finalNumber = if (number != null && number in 1..15) number.toString() else ""
+
+                val result = prefix + finalNumber
                 binding.etTableNumber.setText(result)
                 binding.etTableNumber.setSelection(result.length)
+
                 editing = false
             }
         })
     }
+
 
 
     private fun setupDatePicker() {
