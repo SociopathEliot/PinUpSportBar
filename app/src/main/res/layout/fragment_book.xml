@@ -69,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_rounded_edit"
                     android:hint="Full Name"
+                    android:maxLines="1"
                     android:maxLength="15"
                     android:padding="25dp"
                     android:textColorHint="@color/black" />
