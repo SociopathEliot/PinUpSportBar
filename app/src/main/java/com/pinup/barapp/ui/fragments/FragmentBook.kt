@@ -155,7 +155,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
                 if (editing || s == null) return
                 editing = true
 
-                val digits = s.toString().removePrefix(prefix).filter { it.isDigit() }.take(3)
+                val digits = s.toString().removePrefix(prefix).filter { it.isDigit() }.take(15)
 
                 val result = prefix + digits
                 binding.etTableNumber.setText(result)

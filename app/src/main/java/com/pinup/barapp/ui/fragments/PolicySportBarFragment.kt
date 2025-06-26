@@ -39,23 +39,22 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.pinup.barapp.databinding.FragmentSportBarPrivacyBinding
-import com.pinup.barapp.databinding.NoInternetConnectionLayoutBinding
+import com.pinup.barapp.databinding.NoConnectionScreenBinding
 import com.pinup.barapp.utils.SportBarNavigation.WELCOME_KEY
 import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchNewFragment
-import dagger.hilt.android.AndroidEntryPoint
 
 class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
-    private lateinit var binding: FragmentSportBarPrivacyBinding
-    private lateinit var binding2: NoInternetConnectionLayoutBinding
+    private lateinit var privacyScreen: FragmentSportBarPrivacyBinding
+    private lateinit var noConnectionScreen: NoConnectionScreenBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSportBarPrivacyBinding.inflate(inflater, container, false)
-        binding2 = NoInternetConnectionLayoutBinding.bind(binding.root)
-        return binding.root
+        privacyScreen = FragmentSportBarPrivacyBinding.inflate(inflater, container, false)
+        noConnectionScreen = NoConnectionScreenBinding.bind(privacyScreen.root)
+        return privacyScreen.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,17 +78,17 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
     private fun handleInitPrivacy() {
         if (urlOffer.contains("https://sites.google.com/")) {
-            binding.homePrivacyPolicyMaterialButton.visibility = View.VISIBLE
-            binding.homePrivacyPolicyMaterialButton.setOnClickListener {
+            privacyScreen.homePrivacyPolicyMaterialButton.visibility = View.VISIBLE
+            privacyScreen.homePrivacyPolicyMaterialButton.setOnClickListener {
                 navigateToProjectFragment()
             }
         } else {
-            binding.homePrivacyPolicyMaterialButton.visibility = View.GONE
+            privacyScreen.homePrivacyPolicyMaterialButton.visibility = View.GONE
         }
     }
 
     private fun setupWebView() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(privacyScreen.root) { view, insets ->
             val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
             val finalPadding = (imeHeight - navBarHeight).coerceAtLeast(0)
@@ -97,7 +96,7 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
             view.setPadding(0, 0, 0, finalPadding)
             insets
         }
-        binding.privacyPolicyView.apply {
+        privacyScreen.privacyPolicyView.apply {
             configureWebView()
             loadUrl(urlOffer)
             setWebChromeClient(this, requireActivity())
@@ -105,15 +104,15 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
     }
 
     private fun setupDownloadListener() {
-        binding.privacyPolicyView.setDownloadListener { url, _, contentDisposition, mimeType, _ ->
+        privacyScreen.privacyPolicyView.setDownloadListener { url, _, contentDisposition, mimeType, _ ->
             setupDownloadManager(url, contentDisposition, mimeType, requireActivity())
         }
     }
 
     private fun setupBackNavigationListener() {
-        binding.privacyPolicyView.setOnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP && binding.privacyPolicyView.canGoBack()) {
-                binding.privacyPolicyView.goBack()
+        privacyScreen.privacyPolicyView.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP && privacyScreen.privacyPolicyView.canGoBack()) {
+                privacyScreen.privacyPolicyView.goBack()
                 true
             } else {
                 false
@@ -165,7 +164,7 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
         override fun onReceivedError(
             view: WebView?, request: WebResourceRequest?, error: WebResourceError?
         ) {
-            binding.progressBarView.visibility = View.GONE
+            privacyScreen.progressBarView.visibility = View.GONE
             if (!isInternetAvailable()) {
                 showNoInternetScreen()
             }
@@ -173,7 +172,7 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            binding.progressBarView.visibility = View.GONE
+            privacyScreen.progressBarView.visibility = View.GONE
         }
     }
 
@@ -194,15 +193,15 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
 
     private fun showNoInternetScreen() {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        binding2.apply {
-            rootNoInternetConnectionLayout.visibility = View.VISIBLE
-            rootNoInternetConnectionLayout.setOnClickListener { }
-            reconnectOfflineMaterialButton.setOnClickListener {
+        noConnectionScreen.apply {
+            internetConnectionContainer.visibility = View.VISIBLE
+            internetConnectionContainer.setOnClickListener { }
+            tryAgainMaterialButton.setOnClickListener {
                 activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
-                binding.privacyPolicyView.reload()
-                rootNoInternetConnectionLayout.visibility = View.GONE
+                privacyScreen.privacyPolicyView.reload()
+                internetConnectionContainer.visibility = View.GONE
             }
-            demoModeOfflineMaterialButton.setOnClickListener {
+            withoutInternetMaterialButton.setOnClickListener {
                 navigateToProjectFragment()
             }
         }
@@ -239,7 +238,7 @@ class PrivacyPolicyFragment(private val urlOffer: String) : Fragment() {
             url.startsWith("intent://") -> launchIntentLink(url)
 
             else -> {
-                binding.privacyPolicyView.loadUrl(url)
+                privacyScreen.privacyPolicyView.loadUrl(url)
                 false
             }
         }

@@ -2,6 +2,8 @@ package com.pinup.barapp.ui.fragments
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +38,9 @@ class LaunchSportBarFragment : Fragment() {
 
         handleAppInitialization()
 
-        //todo splash animation logic
+        Handler(Looper.getMainLooper()).postDelayed({
+        }, 3000)
+
     }
 
     private fun navigateToProjectFragment() {

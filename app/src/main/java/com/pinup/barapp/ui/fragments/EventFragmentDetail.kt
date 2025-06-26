@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.pinup.barapp.R
@@ -90,6 +91,11 @@ class EventFragmentDetail : Fragment() {
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.blankFragment)
+            }
+        })
     }
 
     override fun onDestroyView() {
