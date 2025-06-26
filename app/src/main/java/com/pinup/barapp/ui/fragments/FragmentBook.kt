@@ -49,8 +49,6 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         setupValidationWatchers()
         validateForm()
         setupScrollOnFocus()
-        handleKeyboardInsets()
-        applyKeyboardInsetFix()
 
         binding.etPhoneNumber.filters = arrayOf(InputFilter { source, _, _, dest, _, _ ->
             val digits = (dest.toString() + source.toString()).filter { it.isDigit() }
@@ -83,15 +81,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
 
         }
     }
-    private fun applyKeyboardInsetFix() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.footerBlock) { view, insets ->
-            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val nav = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
 
-            view.updatePadding(bottom = maxOf(ime.bottom, nav.bottom))
-            insets
-        }
-    }
 
 
     private fun setupValidationWatchers() {
@@ -129,13 +119,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         binding.btnConfirm.alpha = if (isFormValid) 1f else 0.5f
     }
 
-    private fun handleKeyboardInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
-            binding.formScroll.setPadding(0, 0, 0, imeHeight)
-            insets
-        }
-    }
+
 
     private fun setupPhoneMask() {
         binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
