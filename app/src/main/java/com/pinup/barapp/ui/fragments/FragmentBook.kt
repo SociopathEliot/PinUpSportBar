@@ -49,6 +49,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
         setupValidationWatchers()
         validateForm()
         setupScrollOnFocus()
+        setupKeyboardVisibilityListener()
 
         binding.etPhoneNumber.filters = arrayOf(InputFilter { source, _, _, dest, _, _ ->
             val digits = (dest.toString() + source.toString()).filter { it.isDigit() }
@@ -79,6 +80,17 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
             binding.bgImage.visibility = View.VISIBLE
             binding.btnConfirm.visibility = View.VISIBLE
 
+        }
+    }
+    private fun setupKeyboardVisibilityListener() {
+        val rootView = binding.root
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = android.graphics.Rect()
+            rootView.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = rootView.rootView.height
+            val keypadHeight = screenHeight - rect.bottom
+            val isKeyboardOpen = keypadHeight > screenHeight * 0.15
+            binding.footerBlock.visibility = if (isKeyboardOpen) View.GONE else View.VISIBLE
         }
     }
 
