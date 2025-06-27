@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.basic
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -40,6 +40,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.pinup.barapp.databinding.FragmentSportBarPrivacyBinding
 import com.pinup.barapp.databinding.NoConnectionScreenBinding
+import com.pinup.barapp.ui.fragments.splash.HomePinupFragment
+import com.pinup.barapp.ui.fragments.splash.WelcomePinupFragment
 import com.pinup.barapp.utils.SportBarNavigation.WELCOME_KEY
 import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchNewFragment

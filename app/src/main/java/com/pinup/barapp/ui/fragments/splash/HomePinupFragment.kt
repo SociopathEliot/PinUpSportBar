@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.splash
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle

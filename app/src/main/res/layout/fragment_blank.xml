@@ -5,7 +5,7 @@
     android:id="@+id/containerHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pinup.barapp.ui.fragments.MainScreen">
+    tools:context="com.pinup.barapp.ui.fragments.mainscreen.MainScreen">
 
 
     <LinearLayout

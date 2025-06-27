@@ -8,7 +8,7 @@
 
         <fragment
             android:id="@+id/splashFragment"
-            android:name="com.pinup.barapp.ui.fragments.LaunchSportBarFragment"
+            android:name="com.pinup.barapp.ui.fragments.basic.LaunchSportBarFragment"
             android:label="Splash" >
 
             <action
@@ -17,7 +17,7 @@
         </fragment>
     <fragment
         android:id="@+id/blankFragment2"
-        android:name="com.pinup.barapp.ui.fragments.MainScreen"
+        android:name="com.pinup.barapp.ui.fragments.mainscreen.MainScreen"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
 

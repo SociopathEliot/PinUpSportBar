@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.event
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

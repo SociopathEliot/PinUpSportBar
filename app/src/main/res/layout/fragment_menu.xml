@@ -5,7 +5,7 @@
     android:id="@+id/fl_menu_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.MenuFragment">
+    tools:context=".ui.fragments.menu.MenuFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

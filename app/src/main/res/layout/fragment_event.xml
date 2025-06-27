@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.EventFragment"
+    tools:context=".ui.fragments.event.EventFragment"
     android:background="@color/white">
 
     <LinearLayout

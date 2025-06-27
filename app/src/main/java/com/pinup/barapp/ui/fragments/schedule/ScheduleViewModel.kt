@@ -1,16 +1,16 @@
-package com.pinup.barapp.ui.viewmodels
+package com.pinup.barapp.ui.fragments.schedule
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.pinup.barapp.domain.MatchRepository
 import com.pinup.barapp.domain.models.Match
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
+import javax.inject.Inject
 
 @HiltViewModel
 class ScheduleViewModel @Inject constructor(

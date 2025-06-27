@@ -1,20 +1,21 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.basket
 
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBasketBinding
-import com.pinup.barapp.ui.adapters.CartAdapter
 import com.pinup.barapp.domain.models.CartItem
-import com.pinup.barapp.ui.viewmodels.CartViewModel
+import com.pinup.barapp.ui.adapters.CartAdapter
+import com.pinup.barapp.ui.fragments.menu.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class BasketFragment : Fragment(R.layout.fragment_basket) {
 

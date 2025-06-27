@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/welcome_screen_background"
     android:padding="24dp"
-    tools:context="com.pinup.barapp.ui.fragments.WelcomePinupFragment">
+    tools:context="com.pinup.barapp.ui.fragments.splash.WelcomePinupFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

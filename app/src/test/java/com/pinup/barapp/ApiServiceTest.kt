@@ -1,5 +1,5 @@
 import com.pinup.barapp.BuildConfig
-import com.pinup.barapp.data.remote.ApiService
+import com.pinup.barapp.data.remote.apiservices.ApiService
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

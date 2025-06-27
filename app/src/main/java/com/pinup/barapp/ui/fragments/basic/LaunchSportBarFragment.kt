@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.basic
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -13,13 +13,11 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.pinup.barapp.databinding.FragmentSportBarSplashBinding
-import com.pinup.barapp.utils.SportBarNavigation.DEFAULT_DOMAIN_LINK
-import com.pinup.barapp.utils.SportBarNavigation.MAIN_OFFER_LINK_KEY
-import com.pinup.barapp.utils.SportBarNavigation.USER_STATUS_KEY
-import com.pinup.barapp.utils.SportBarNavigation.WELCOME_KEY
+import com.pinup.barapp.ui.fragments.splash.HomePinupFragment
+import com.pinup.barapp.ui.fragments.splash.WelcomePinupFragment
+import com.pinup.barapp.utils.SportBarNavigation
 import com.pinup.barapp.utils.SportBarNavigation.getSharedPreferences
 import com.pinup.barapp.utils.SportBarNavigation.launchNewFragmentWithoutBackstack
-import dagger.hilt.android.AndroidEntryPoint
 
 class LaunchSportBarFragment : Fragment() {
 
@@ -44,7 +42,7 @@ class LaunchSportBarFragment : Fragment() {
     }
 
     private fun navigateToProjectFragment() {
-        val launchedBefore = context?.getSharedPreferences()?.getBoolean(WELCOME_KEY, false) == true
+        val launchedBefore = context?.getSharedPreferences()?.getBoolean(SportBarNavigation.WELCOME_KEY, false) == true
         if (launchedBefore) {
             parentFragmentManager.launchNewFragmentWithoutBackstack(HomePinupFragment())
         } else {
@@ -53,7 +51,7 @@ class LaunchSportBarFragment : Fragment() {
     }
 
     private fun handleAppInitialization() {
-        val offerLink = context?.getSharedPreferences()?.getString(MAIN_OFFER_LINK_KEY, "") ?: ""
+        val offerLink = context?.getSharedPreferences()?.getString(SportBarNavigation.MAIN_OFFER_LINK_KEY, "") ?: ""
         if (!isUser()) {
             navigateToProjectFragment()
         } else if (offerLink.isNotEmpty()) {
@@ -65,7 +63,7 @@ class LaunchSportBarFragment : Fragment() {
 
     private fun getLinks() {
         val queue = Volley.newRequestQueue(context)
-        val url = DEFAULT_DOMAIN_LINK
+        val url = SportBarNavigation.DEFAULT_DOMAIN_LINK
 
         val stringRequest = object : StringRequest(Method.GET, url, Response.Listener { offerLink ->
 
@@ -93,14 +91,14 @@ class LaunchSportBarFragment : Fragment() {
     }
 
     private fun saveLink(offerLink: String) {
-        context?.getSharedPreferences()?.edit { putString(MAIN_OFFER_LINK_KEY, offerLink)?.apply() }
+        context?.getSharedPreferences()?.edit { putString(SportBarNavigation.MAIN_OFFER_LINK_KEY, offerLink)?.apply() }
     }
 
     private fun saveUserFalse() {
-        context?.getSharedPreferences()?.edit { putBoolean(USER_STATUS_KEY, false)?.apply() }
+        context?.getSharedPreferences()?.edit { putBoolean(SportBarNavigation.USER_STATUS_KEY, false)?.apply() }
     }
 
     private fun isUser(): Boolean {
-        return context?.getSharedPreferences()?.getBoolean(USER_STATUS_KEY, true) ?: true
+        return context?.getSharedPreferences()?.getBoolean(SportBarNavigation.USER_STATUS_KEY, true) ?: true
     }
 }

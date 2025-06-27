@@ -1,36 +1,32 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.tablebooking
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.set
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.pinup.barapp.R
-import com.pinup.barapp.databinding.FragmentQrBinding
-import androidx.core.graphics.createBitmap
-import androidx.core.graphics.set
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.pinup.barapp.ui.viewmodels.CartViewModel
-import com.pinup.barapp.ui.viewmodels.QrFragmentViewModel
+import com.pinup.barapp.databinding.FragmentReservationQrBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.getValue
 
 @AndroidEntryPoint
-class QRFragment : Fragment() {
-
-    private var _binding: FragmentQrBinding? = null
+class ReservationQrFragment : Fragment() {
+    private var _binding: FragmentReservationQrBinding? = null
     private val binding get() = _binding!!
-    private val qrViewModel: QrFragmentViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentQrBinding.inflate(inflater, container, false)
+        _binding = FragmentReservationQrBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,19 +38,15 @@ class QRFragment : Fragment() {
         binding.ivQr.setImageBitmap(qrBitmap)
         binding.tvOrderId.text = "Order #$orderId"
 
-
         binding.btnBackHome.setOnClickListener {
-            qrViewModel.clearCart()
             findNavController().popBackStack(R.id.blankFragment, false)
         }
     }
-
 
     private fun generateUniqueOrderId(): String {
         val random = (0..9999).random().toString().padStart(4, '0')
         return random
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -67,8 +59,7 @@ class QRFragment : Fragment() {
         val bmp = createBitmap(size, size, Bitmap.Config.RGB_565)
         for (x in 0 until size) {
             for (y in 0 until size) {
-                bmp[x, y] =
-                    if (bits[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE
+                bmp[x, y] = if (bits[x, y]) Color.BLACK else Color.WHITE
             }
         }
         return bmp

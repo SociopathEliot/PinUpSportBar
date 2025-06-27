@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.pinup.barapp.ui.fragments.MenuFragment"
+        android:name="com.pinup.barapp.ui.fragments.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/basketFragment"
-        android:name="com.pinup.barapp.ui.fragments.BasketFragment"
+        android:name="com.pinup.barapp.ui.fragments.basket.BasketFragment"
         android:label="BasketFragment">
 
         <action
@@ -26,12 +26,12 @@
     </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.pinup.barapp.ui.fragments.ScheduleFragment"
+        android:name="com.pinup.barapp.ui.fragments.schedule.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.pinup.barapp.ui.fragments.MainScreen"
+        android:name="com.pinup.barapp.ui.fragments.mainscreen.MainScreen"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank">
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentBook"
-        android:name="com.pinup.barapp.ui.fragments.FragmentBook"
+        android:name="com.pinup.barapp.ui.fragments.tablebooking.FragmentBook"
         android:label="FragmentBook" >
         <action
             android:id="@+id/action_fragmentBook_to_reservationQrFragment"
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
-        android:name="com.pinup.barapp.ui.fragments.EventFragment"
+        android:name="com.pinup.barapp.ui.fragments.event.EventFragment"
         android:label="fragment_event"
         tools:layout="@layout/fragment_event" >
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/QRFragment"
-        android:name="com.pinup.barapp.ui.fragments.QRFragment"
+        android:name="com.pinup.barapp.ui.fragments.basket.QRFragment"
         android:label="QRFragment" >
 
         <action
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventFragmentDetail"
-        android:name="com.pinup.barapp.ui.fragments.EventFragmentDetail"
+        android:name="com.pinup.barapp.ui.fragments.event.EventFragmentDetail"
         android:label="fragment_event_detail"
         tools:layout="@layout/fragment_event_detail">
         <argument
@@ -88,7 +88,7 @@
 
     <fragment
         android:id="@+id/reservationQrFragment"
-        android:name="com.pinup.barapp.ui.fragments.ReservationQrFragment"
+        android:name="com.pinup.barapp.ui.fragments.tablebooking.ReservationQrFragment"
         android:label="reservationQrFragment" />
 
 </navigation>

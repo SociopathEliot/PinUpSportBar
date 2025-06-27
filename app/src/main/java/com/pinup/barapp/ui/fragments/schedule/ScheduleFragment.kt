@@ -1,19 +1,22 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.schedule
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentScheduleBinding
 import com.pinup.barapp.ui.adapters.ScheduleAdapter
-import com.pinup.barapp.ui.viewmodels.ScheduleViewModel
+import com.pinup.barapp.ui.fragments.schedule.ScheduleViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.Month
+
 @AndroidEntryPoint
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
@@ -53,12 +56,12 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerMonth.adapter = adapter1
-        binding.spinnerMonth.setSelection(java.time.LocalDate.now().monthValue - 1)
+        binding.spinnerMonth.setSelection(LocalDate.now().monthValue - 1)
         var isFirst = true
         binding.spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (isFirst) { isFirst = false; return }
-                val month = java.time.Month.of(position + 1)
+                val month = Month.of(position + 1)
                 viewModel.loadMatchesForMonth(month)
             }
 

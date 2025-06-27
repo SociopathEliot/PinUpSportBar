@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.tablebooking
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,18 +10,13 @@ import com.google.android.material.timepicker.TimeFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBookBinding
 import com.pinup.barapp.domain.models.Reservation
-import com.pinup.barapp.ui.viewmodels.ReservationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

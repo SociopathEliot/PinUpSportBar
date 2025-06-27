@@ -1,5 +1,6 @@
 package com.pinup.barapp.data.remote
 
+import com.pinup.barapp.data.remote.apiservices.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

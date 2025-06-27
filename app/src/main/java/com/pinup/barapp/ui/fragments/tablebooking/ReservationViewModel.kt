@@ -1,4 +1,4 @@
-package com.pinup.barapp.ui.viewmodels
+package com.pinup.barapp.ui.fragments.tablebooking
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

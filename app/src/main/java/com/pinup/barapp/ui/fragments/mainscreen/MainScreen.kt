@@ -1,14 +1,15 @@
-package com.pinup.barapp.ui.fragments
+package com.pinup.barapp.ui.fragments.mainscreen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.pinup.barapp.R
 import com.pinup.barapp.databinding.FragmentBlankBinding
 import com.pinup.barapp.ui.MainActivity
+import com.pinup.barapp.ui.fragments.HelpDialogFragment
 
 class MainScreen : Fragment() {
 

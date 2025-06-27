@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pinup.barapp.ui.fragments.PrivacyPolicyFragment">
+    tools:context="com.pinup.barapp.ui.fragments.basic.PrivacyPolicyFragment">
 
     <WebView
         android:id="@+id/privacy_policy_view"

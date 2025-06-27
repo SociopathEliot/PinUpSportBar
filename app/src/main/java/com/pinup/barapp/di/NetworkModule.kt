@@ -1,6 +1,6 @@
 package com.pinup.barapp.di
 
-import com.pinup.barapp.data.remote.ApiService
+import com.pinup.barapp.data.remote.apiservices.ApiService
 import com.pinup.barapp.data.remote.RetrofitClient
 import com.pinup.barapp.data.repositories.MatchRepositoryImpl
 import com.pinup.barapp.domain.MatchRepository
