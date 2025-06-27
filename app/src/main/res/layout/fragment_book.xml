@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white">
 
     <LinearLayout
@@ -70,6 +69,7 @@
                     android:background="@drawable/bg_rounded_edit"
                     android:hint="Full Name"
                     android:maxLines="1"
+                    android:singleLine="true"
                     android:maxLength="15"
                     android:padding="25dp"
                     android:textColorHint="@color/black" />
@@ -261,8 +261,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="20dp"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
+
             android:layout_marginTop="10dp"
             android:backgroundTint="#FF0000"
             android:fontFamily="@font/avantgarde_demi"
@@ -275,8 +274,7 @@
             android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
+
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"

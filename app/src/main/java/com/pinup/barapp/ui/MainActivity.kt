@@ -3,6 +3,7 @@ package com.pinup.barapp.ui
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+
         blurView = findViewById(R.id.blurView)
         val rootView = findViewById<ViewGroup>(android.R.id.content)
         val windowBackground: Drawable = window.decorView.background

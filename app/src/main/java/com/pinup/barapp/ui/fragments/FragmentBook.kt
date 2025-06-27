@@ -42,6 +42,7 @@ class FragmentBook : Fragment(R.layout.fragment_book) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupPhoneMask()
         setupTablePrefix()
         setupDatePicker()
